@@ -1,0 +1,105 @@
+@page "/meetingsmeetings"
+
+<PageTitle>Meetingsmeetings</PageTitle>
+<RadzenStack>
+    <RadzenRow AlignItems="AlignItems.Center">
+        <RadzenColumn Size="12" SizeMD="6">
+            <RadzenText Text="Meetingsmeetings" TextStyle="TextStyle.H3" TagName="TagName.H1" style="margin: 0" />
+        </RadzenColumn>
+        <RadzenColumn Size="12" SizeMD="6">
+            <RadzenStack Orientation="Orientation.Horizontal" AlignItems="AlignItems.Center" JustifyContent="JustifyContent.End" Gap="0.5rem">
+                <RadzenSplitButton Icon="get_app" Text="Export" Click="@ExportClick" Variant="Variant.Flat" Shade="Shade.Lighter">
+                    <RadzenSplitButtonItem Text="Excel" Value="xlsx" />
+                    <RadzenSplitButtonItem Text="CSV" Value="csv" />
+                </RadzenSplitButton>
+                <RadzenButton Icon="add_circle_outline" Text="Add" Click="@AddButtonClick" Variant="Variant.Flat" />
+            </RadzenStack>
+        </RadzenColumn>
+    </RadzenRow>
+    <RadzenTextBox Placeholder="Search ..." style="display: block; width: 100%" @oninput="@Search" aria-label="Search by all string columns" />
+    <RadzenRow>
+      <RadzenColumn SizeMD=12>
+        <RadzenDataGrid @ref="grid0" ColumnWidth="200px"   AllowFiltering="true" FilterMode="FilterMode.Advanced" AllowPaging="true" AllowSorting="true" ShowPagingSummary="true" PageSizeOptions=@(new int[]{5, 10, 20, 30})
+            Data="@meetingsmeetings" LoadData="@Grid0LoadData" Count="@count" TItem="EspoNew.Server.Models.EspoDbNew.MeetingsMeeting" RowDoubleClick="@EditRow" RowSelect="@GetChildData">
+            <Columns>
+                <RadzenDataGridColumn TItem="EspoNew.Server.Models.EspoDbNew.MeetingsMeeting" Property="ETag" Title="E Tag">
+                </RadzenDataGridColumn>
+                <RadzenDataGridColumn TItem="EspoNew.Server.Models.EspoDbNew.MeetingsMeeting" Property="meeting_id" Title="meetingid">
+                </RadzenDataGridColumn>
+                <RadzenDataGridColumn TItem="EspoNew.Server.Models.EspoDbNew.MeetingsMeeting" Property="name" Title="name">
+                </RadzenDataGridColumn>
+                <RadzenDataGridColumn TItem="EspoNew.Server.Models.EspoDbNew.MeetingsMeeting" Property="deleted" Title="deleted">
+                </RadzenDataGridColumn>
+                <RadzenDataGridColumn TItem="EspoNew.Server.Models.EspoDbNew.MeetingsMeeting" Property="status" Title="status">
+                </RadzenDataGridColumn>
+                <RadzenDataGridColumn TItem="EspoNew.Server.Models.EspoDbNew.MeetingsMeeting" Property="date_start" Title="datestart">
+                </RadzenDataGridColumn>
+                <RadzenDataGridColumn TItem="EspoNew.Server.Models.EspoDbNew.MeetingsMeeting" Property="date_end" Title="dateend">
+                </RadzenDataGridColumn>
+                <RadzenDataGridColumn TItem="EspoNew.Server.Models.EspoDbNew.MeetingsMeeting" Property="is_all_day" Title="isallday">
+                </RadzenDataGridColumn>
+                <RadzenDataGridColumn TItem="EspoNew.Server.Models.EspoDbNew.MeetingsMeeting" Property="description" Title="description">
+                </RadzenDataGridColumn>
+                <RadzenDataGridColumn TItem="EspoNew.Server.Models.EspoDbNew.MeetingsMeeting" Property="date_start_date" Title="datestartdate">
+                </RadzenDataGridColumn>
+                <RadzenDataGridColumn TItem="EspoNew.Server.Models.EspoDbNew.MeetingsMeeting" Property="date_end_date" Title="dateenddate">
+                </RadzenDataGridColumn>
+                <RadzenDataGridColumn TItem="EspoNew.Server.Models.EspoDbNew.MeetingsMeeting" Property="parent_id" Title="parentid">
+                </RadzenDataGridColumn>
+                <RadzenDataGridColumn TItem="EspoNew.Server.Models.EspoDbNew.MeetingsMeeting" Property="parent_type" Title="parenttype">
+                </RadzenDataGridColumn>
+                <RadzenDataGridColumn TItem="EspoNew.Server.Models.EspoDbNew.MeetingsMeeting" Property="account.assigned_employee_id" Title="account">
+                </RadzenDataGridColumn>
+                <RadzenDataGridColumn TItem="EspoNew.Server.Models.EspoDbNew.MeetingsMeeting" Property="assigned_employee_id" Title="assignedemployeeid">
+                </RadzenDataGridColumn>
+                <RadzenDataGridColumn TItem="EspoNew.Server.Models.EspoDbNew.MeetingsMeeting" Filterable="false" Sortable="false" Width="70px" TextAlign="TextAlign.Center">
+                    <Template Context="meetingsMeeting">
+
+                        <RadzenButton ButtonStyle="ButtonStyle.Danger" Icon="delete" Size="ButtonSize.Medium"
+                            Shade="Shade.Lighter" Variant="Variant.Flat"
+                            Click=@(args => GridDeleteButtonClick(args, meetingsMeeting)) @onclick:stopPropagation="true" />
+                    </Template>
+                </RadzenDataGridColumn>
+            </Columns>
+
+        </RadzenDataGrid>
+
+                <RadzenStack Class="rz-my-8">
+                    <RadzenRow Gap="0" AlignItems="AlignItems.Center">
+                        <RadzenColumn Size="12" SizeMD="6">
+                            <RadzenText Visible="@(meetingsMeetingChild != null)" Text="Contactscontact_meetings" TextStyle="TextStyle.H4" TagName="TagName.H2" style="margin: 0" />
+                        </RadzenColumn>
+                        <RadzenColumn Size="12" SizeMD="6">
+                            <RadzenStack Orientation="Orientation.Horizontal" AlignItems="AlignItems.Center" JustifyContent="JustifyContent.End" Gap="0.5rem">
+                                <RadzenButton Visible="@(meetingsMeetingChild != null)" Icon="add_circle_outline" Text="Add" Click=@(args => Contactscontact_meetingsAddButtonClick(args,meetingsMeetingChild)) />
+                            </RadzenStack>
+                        </RadzenColumn>
+                    </RadzenRow>
+                    <RadzenDataGrid ColumnWidth="200px" Visible="@(meetingsMeetingChild != null)" @ref=Contactscontact_meetingsDataGrid AllowFiltering="true" FilterMode="Radzen.FilterMode.Advanced" AllowPaging="true" AllowSorting="true" ShowPagingSummary="true" PageSizeOptions=@(new int[]{5, 10, 20, 30})
+                      Data="@meetingsMeetingChild?.Contactscontact_meetings" TItem="EspoNew.Server.Models.EspoDbNew.ContactsContactMeeting"  RowSelect="@(args => Contactscontact_meetingsRowSelect(args, meetingsMeetingChild))">
+                      <Columns>
+                        <RadzenDataGridColumn TItem="EspoNew.Server.Models.EspoDbNew.ContactsContactMeeting" Property="ETag" Title="E Tag">
+                        </RadzenDataGridColumn>
+                        <RadzenDataGridColumn TItem="EspoNew.Server.Models.EspoDbNew.ContactsContactMeeting" Property="contact_meeting_id" Title="contactmeetingid">
+                        </RadzenDataGridColumn>
+                        <RadzenDataGridColumn TItem="EspoNew.Server.Models.EspoDbNew.ContactsContactMeeting" Property="contact.assigned_employee_id" Title="contact">
+                        </RadzenDataGridColumn>
+                        <RadzenDataGridColumn TItem="EspoNew.Server.Models.EspoDbNew.ContactsContactMeeting" Property="meeting.assigned_employee_id" Title="meeting">
+                        </RadzenDataGridColumn>
+                        <RadzenDataGridColumn TItem="EspoNew.Server.Models.EspoDbNew.ContactsContactMeeting" Property="status" Title="status">
+                        </RadzenDataGridColumn>
+                        <RadzenDataGridColumn TItem="EspoNew.Server.Models.EspoDbNew.ContactsContactMeeting" Property="deleted" Title="deleted">
+                        </RadzenDataGridColumn>
+                        <RadzenDataGridColumn TItem="EspoNew.Server.Models.EspoDbNew.ContactsContactMeeting" Filterable="false" Sortable="false" Width="70px" TextAlign="TextAlign.Center">
+                            <Template Context="contactsContactMeetingChild">
+
+                                <RadzenButton ButtonStyle="ButtonStyle.Danger" Icon="delete" Size="ButtonSize.Medium" Shade="Shade.Lighter" Variant="Variant.Flat"
+                                    Click=@(args => Contactscontact_meetingsDeleteButtonClick(args, contactsContactMeetingChild)) @onclick:stopPropagation="true" />
+                            </Template>
+                        </RadzenDataGridColumn>
+                      </Columns>
+                    </RadzenDataGrid>
+                </RadzenStack>
+    </RadzenColumn>
+  </RadzenRow>
+</RadzenStack>

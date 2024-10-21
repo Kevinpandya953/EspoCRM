@@ -1,0 +1,34 @@
+@page "/edit-address-address-country"
+
+<PageTitle>Edit AddressAddressCountry</PageTitle>
+
+    <RadzenColumn SizeMD=12>
+        <RadzenAlert Shade="Shade.Lighter" Variant="Variant.Flat" Size="AlertSize.Small" AlertStyle="AlertStyle.Danger" Visible="@errorVisible">Cannot save AddressAddressCountry</RadzenAlert>
+        <RadzenTemplateForm TItem="EspoNew.Server.Models.EspoDbNew.AddressAddressCountry" Data="@addressAddressCountry" Visible="@(addressAddressCountry != null)" Submit="@FormSubmit">
+          <RadzenStack>
+            <RadzenFormField Text="E Tag" Variant="Variant.Filled">
+                  <ChildContent>
+                    <RadzenTextBox style="display: block; width: 100%" @bind-Value="@addressAddressCountry.ETag" Name="ETag" />
+              </ChildContent>
+            </RadzenFormField>
+            <RadzenFormField Text="countryid" Variant="Variant.Filled">
+                  <ChildContent>
+                    <RadzenTextBox style="display: block; width: 100%" @bind-Value="@addressAddressCountry.country_id" Name="country_id" />
+                  </ChildContent>    
+                  <Helper>
+                    <RadzenRequiredValidator Component="country_id" Text="country_id is required" />
+                  </Helper>
+            </RadzenFormField>
+            <RadzenFormField Text="countryname" Variant="Variant.Filled">
+                  <ChildContent>
+                    <RadzenTextBox style="display: block; width: 100%" @bind-Value="@addressAddressCountry.country_name" Name="country_name" />
+              </ChildContent>
+            </RadzenFormField>
+          </RadzenStack>
+          <RadzenStack style="margin-top:1rem;" Orientation="Orientation.Horizontal" AlignItems="AlignItems.Center" JustifyContent="JustifyContent.End" Gap="0.5rem">
+                    <RadzenButton ButtonStyle="ButtonStyle.Primary" ButtonType="ButtonType.Submit" Icon="save" Text="Save" Variant="Variant.Flat" />
+                    <RadzenButton ButtonStyle="ButtonStyle.Light" Text="Cancel" Variant="Variant.Flat" Click="@CancelButtonClick"  />
+          </RadzenStack>
+        </RadzenTemplateForm>
+    </RadzenColumn>
+

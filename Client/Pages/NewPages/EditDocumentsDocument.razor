@@ -1,0 +1,81 @@
+@page "/edit-documents-document"
+
+<PageTitle>Edit DocumentsDocument</PageTitle>
+
+    <RadzenColumn SizeMD=12>
+        <RadzenAlert Shade="Shade.Lighter" Variant="Variant.Flat" Size="AlertSize.Small" AlertStyle="AlertStyle.Danger" Visible="@errorVisible">Cannot save DocumentsDocument</RadzenAlert>
+        <RadzenTemplateForm TItem="EspoNew.Server.Models.EspoDbNew.DocumentsDocument" Data="@documentsDocument" Visible="@(documentsDocument != null)" Submit="@FormSubmit">
+          <RadzenStack>
+            <RadzenFormField Text="E Tag" Variant="Variant.Filled">
+                  <ChildContent>
+                    <RadzenTextBox style="display: block; width: 100%" @bind-Value="@documentsDocument.ETag" Name="ETag" />
+              </ChildContent>
+            </RadzenFormField>
+            <RadzenFormField Text="documentid" Variant="Variant.Filled">
+                  <ChildContent>
+                    <RadzenTextBox style="display: block; width: 100%" @bind-Value="@documentsDocument.document_id" Name="document_id" />
+                  </ChildContent>    
+                  <Helper>
+                    <RadzenRequiredValidator Component="document_id" Text="document_id is required" />
+                  </Helper>
+            </RadzenFormField>
+            <RadzenFormField Text="name" Variant="Variant.Filled">
+                  <ChildContent>
+                    <RadzenTextBox style="display: block; width: 100%" @bind-Value="@documentsDocument.name" Name="name" />
+              </ChildContent>
+            </RadzenFormField>
+            <RadzenFormField Text="deleted" Variant="Variant.Filled">
+                  <ChildContent>
+                    <RadzenNumeric style="display: block; width: 100%" @bind-Value="@documentsDocument.deleted" Name="deleted" />
+              </ChildContent>
+            </RadzenFormField>
+            <RadzenFormField Text="status" Variant="Variant.Filled">
+                  <ChildContent>
+                    <RadzenTextBox style="display: block; width: 100%" @bind-Value="@documentsDocument.status" Name="status" />
+              </ChildContent>
+            </RadzenFormField>
+            <RadzenFormField Text="type" Variant="Variant.Filled">
+                  <ChildContent>
+                    <RadzenTextBox style="display: block; width: 100%" @bind-Value="@documentsDocument.type" Name="type" />
+              </ChildContent>
+            </RadzenFormField>
+            <RadzenFormField Text="publishdate" Variant="Variant.Filled">
+                  <ChildContent>
+                    <RadzenDatePicker DateFormat="MM/dd/yyyy" style="display: block; width: 100%" @bind-Value="@documentsDocument.publish_date" Name="publish_date" />
+              </ChildContent>
+            </RadzenFormField>
+            <RadzenFormField Text="expirationdate" Variant="Variant.Filled">
+                  <ChildContent>
+                    <RadzenDatePicker DateFormat="MM/dd/yyyy" style="display: block; width: 100%" @bind-Value="@documentsDocument.expiration_date" Name="expiration_date" />
+              </ChildContent>
+            </RadzenFormField>
+            <RadzenFormField Text="description" Variant="Variant.Filled">
+                  <ChildContent>
+                    <RadzenTextBox style="display: block; width: 100%" @bind-Value="@documentsDocument.description" Name="description" />
+              </ChildContent>
+            </RadzenFormField>
+            <RadzenFormField Text="fileid" Variant="Variant.Filled">
+                  <ChildContent>
+                    <RadzenTextBox style="display: block; width: 100%" @bind-Value="@documentsDocument.file_id" Name="file_id" />
+              </ChildContent>
+            </RadzenFormField>
+            <RadzenFormField Text="employee" Variant="Variant.Filled">
+                  <ChildContent>
+                    <RadzenDropDownDataGrid Data="@employeesemployeesForassignedEmployeeId" TextProperty="layout_set_id" ValueProperty="employee_id" AllowClear=true
+                        Disabled=@(hasassigned_employee_idValue)  style="display: block; width: 100%" @bind-Value="@documentsDocument.assigned_employee_id" Name="assigned_employee_id"
+                        SelectedValue=@employeesemployeesForassignedEmployeeIdValue Count=@employeesemployeesForassignedEmployeeIdCount LoadData=@employeesemployeesForassignedEmployeeIdLoadData />
+              </ChildContent>
+            </RadzenFormField>
+            <RadzenFormField Text="folderid" Variant="Variant.Filled">
+                  <ChildContent>
+                    <RadzenTextBox style="display: block; width: 100%" @bind-Value="@documentsDocument.folder_id" Name="folder_id" />
+              </ChildContent>
+            </RadzenFormField>
+          </RadzenStack>
+          <RadzenStack style="margin-top:1rem;" Orientation="Orientation.Horizontal" AlignItems="AlignItems.Center" JustifyContent="JustifyContent.End" Gap="0.5rem">
+                    <RadzenButton ButtonStyle="ButtonStyle.Primary" ButtonType="ButtonType.Submit" Icon="save" Text="Save" Variant="Variant.Flat" />
+                    <RadzenButton ButtonStyle="ButtonStyle.Light" Text="Cancel" Variant="Variant.Flat" Click="@CancelButtonClick"  />
+          </RadzenStack>
+        </RadzenTemplateForm>
+    </RadzenColumn>
+

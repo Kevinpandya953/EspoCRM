@@ -1,0 +1,136 @@
+@page "/edit-employees-employee"
+
+<PageTitle>Edit EmployeesEmployee</PageTitle>
+
+    <RadzenColumn SizeMD=12>
+        <RadzenAlert Shade="Shade.Lighter" Variant="Variant.Flat" Size="AlertSize.Small" AlertStyle="AlertStyle.Danger" Visible="@errorVisible">Cannot save EmployeesEmployee</RadzenAlert>
+        <RadzenTemplateForm TItem="EspoNew.Server.Models.EspoDbNew.EmployeesEmployee" Data="@employeesEmployee" Visible="@(employeesEmployee != null)" Submit="@FormSubmit">
+          <RadzenStack>
+            <RadzenFormField Text="E Tag" Variant="Variant.Filled">
+                  <ChildContent>
+                    <RadzenTextBox style="display: block; width: 100%" @bind-Value="@employeesEmployee.ETag" Name="ETag" />
+              </ChildContent>
+            </RadzenFormField>
+            <RadzenFormField Text="employeeid" Variant="Variant.Filled">
+                  <ChildContent>
+                    <RadzenTextBox style="display: block; width: 100%" @bind-Value="@employeesEmployee.employee_id" Name="employee_id" />
+                  </ChildContent>    
+                  <Helper>
+                    <RadzenRequiredValidator Component="employee_id" Text="employee_id is required" />
+                  </Helper>
+            </RadzenFormField>
+            <RadzenFormField Text="deleted" Variant="Variant.Filled">
+                  <ChildContent>
+                    <RadzenNumeric style="display: block; width: 100%" @bind-Value="@employeesEmployee.deleted" Name="deleted" />
+              </ChildContent>
+            </RadzenFormField>
+            <RadzenFormField Text="employeename" Variant="Variant.Filled">
+                  <ChildContent>
+                    <RadzenTextBox style="display: block; width: 100%" @bind-Value="@employeesEmployee.employee_name" Name="employee_name" />
+              </ChildContent>
+            </RadzenFormField>
+            <RadzenFormField Text="type" Variant="Variant.Filled">
+                  <ChildContent>
+                    <RadzenTextBox style="display: block; width: 100%" @bind-Value="@employeesEmployee.type" Name="type" />
+              </ChildContent>
+            </RadzenFormField>
+            <RadzenFormField Text="password" Variant="Variant.Filled">
+                  <ChildContent>
+                    <RadzenTextBox style="display: block; width: 100%" @bind-Value="@employeesEmployee.password" Name="password" />
+              </ChildContent>
+            </RadzenFormField>
+            <RadzenFormField Text="authmethod" Variant="Variant.Filled">
+                  <ChildContent>
+                    <RadzenTextBox style="display: block; width: 100%" @bind-Value="@employeesEmployee.auth_method" Name="auth_method" />
+              </ChildContent>
+            </RadzenFormField>
+            <RadzenFormField Text="apikey" Variant="Variant.Filled">
+                  <ChildContent>
+                    <RadzenTextBox style="display: block; width: 100%" @bind-Value="@employeesEmployee.api_key" Name="api_key" />
+              </ChildContent>
+            </RadzenFormField>
+            <RadzenFormField Text="salutationname" Variant="Variant.Filled">
+                  <ChildContent>
+                    <RadzenTextBox style="display: block; width: 100%" @bind-Value="@employeesEmployee.salutation_name" Name="salutation_name" />
+              </ChildContent>
+            </RadzenFormField>
+            <RadzenFormField Text="firstname" Variant="Variant.Filled">
+                  <ChildContent>
+                    <RadzenTextBox style="display: block; width: 100%" @bind-Value="@employeesEmployee.first_name" Name="first_name" />
+              </ChildContent>
+            </RadzenFormField>
+            <RadzenFormField Text="lastname" Variant="Variant.Filled">
+                  <ChildContent>
+                    <RadzenTextBox style="display: block; width: 100%" @bind-Value="@employeesEmployee.last_name" Name="last_name" />
+              </ChildContent>
+            </RadzenFormField>
+            <RadzenFormField Text="isactive" Variant="Variant.Filled">
+                  <ChildContent>
+                    <RadzenNumeric style="display: block; width: 100%" @bind-Value="@employeesEmployee.is_active" Name="is_active" />
+              </ChildContent>
+            </RadzenFormField>
+            <RadzenFormField Text="title" Variant="Variant.Filled">
+                  <ChildContent>
+                    <RadzenTextBox style="display: block; width: 100%" @bind-Value="@employeesEmployee.title" Name="title" />
+              </ChildContent>
+            </RadzenFormField>
+            <RadzenFormField Text="avatarcolor" Variant="Variant.Filled">
+                  <ChildContent>
+                    <RadzenTextBox style="display: block; width: 100%" @bind-Value="@employeesEmployee.avatar_color" Name="avatar_color" />
+              </ChildContent>
+            </RadzenFormField>
+            <RadzenFormField Text="gender" Variant="Variant.Filled">
+                  <ChildContent>
+                    <RadzenTextBox style="display: block; width: 100%" @bind-Value="@employeesEmployee.gender" Name="gender" />
+              </ChildContent>
+            </RadzenFormField>
+            <RadzenFormField Text="deleteid" Variant="Variant.Filled">
+                  <ChildContent>
+                    <RadzenTextBox style="display: block; width: 100%" @bind-Value="@employeesEmployee.delete_id" Name="delete_id" />
+              </ChildContent>
+            </RadzenFormField>
+            <RadzenFormField Text="middlename" Variant="Variant.Filled">
+                  <ChildContent>
+                    <RadzenTextBox style="display: block; width: 100%" @bind-Value="@employeesEmployee.middle_name" Name="middle_name" />
+              </ChildContent>
+            </RadzenFormField>
+            <RadzenFormField Text="defaultteamid" Variant="Variant.Filled">
+                  <ChildContent>
+                    <RadzenTextBox style="display: block; width: 100%" @bind-Value="@employeesEmployee.default_team_id" Name="default_team_id" />
+              </ChildContent>
+            </RadzenFormField>
+            <RadzenFormField Text="contact" Variant="Variant.Filled">
+                  <ChildContent>
+                    <RadzenDropDownDataGrid Data="@contactscontactsForcontactId" TextProperty="assigned_employee_id" ValueProperty="contact_id" AllowClear=true
+                        Disabled=@(hascontact_idValue)  style="display: block; width: 100%" @bind-Value="@employeesEmployee.contact_id" Name="contact_id"
+                        SelectedValue=@contactscontactsForcontactIdValue Count=@contactscontactsForcontactIdCount LoadData=@contactscontactsForcontactIdLoadData />
+              </ChildContent>
+            </RadzenFormField>
+            <RadzenFormField Text="avatarid" Variant="Variant.Filled">
+                  <ChildContent>
+                    <RadzenTextBox style="display: block; width: 100%" @bind-Value="@employeesEmployee.avatar_id" Name="avatar_id" />
+              </ChildContent>
+            </RadzenFormField>
+            <RadzenFormField Text="dashboardtemplateid" Variant="Variant.Filled">
+                  <ChildContent>
+                    <RadzenTextBox style="display: block; width: 100%" @bind-Value="@employeesEmployee.dashboard_template_id" Name="dashboard_template_id" />
+              </ChildContent>
+            </RadzenFormField>
+            <RadzenFormField Text="workingtimecalendarid" Variant="Variant.Filled">
+                  <ChildContent>
+                    <RadzenTextBox style="display: block; width: 100%" @bind-Value="@employeesEmployee.working_time_calendar_id" Name="working_time_calendar_id" />
+              </ChildContent>
+            </RadzenFormField>
+            <RadzenFormField Text="layoutsetid" Variant="Variant.Filled">
+                  <ChildContent>
+                    <RadzenTextBox style="display: block; width: 100%" @bind-Value="@employeesEmployee.layout_set_id" Name="layout_set_id" />
+              </ChildContent>
+            </RadzenFormField>
+          </RadzenStack>
+          <RadzenStack style="margin-top:1rem;" Orientation="Orientation.Horizontal" AlignItems="AlignItems.Center" JustifyContent="JustifyContent.End" Gap="0.5rem">
+                    <RadzenButton ButtonStyle="ButtonStyle.Primary" ButtonType="ButtonType.Submit" Icon="save" Text="Save" Variant="Variant.Flat" />
+                    <RadzenButton ButtonStyle="ButtonStyle.Light" Text="Cancel" Variant="Variant.Flat" Click="@CancelButtonClick"  />
+          </RadzenStack>
+        </RadzenTemplateForm>
+    </RadzenColumn>
+

@@ -1,0 +1,165 @@
+@page "/documentsdocuments"
+
+<PageTitle>Documentsdocuments</PageTitle>
+<RadzenStack>
+    <RadzenRow AlignItems="AlignItems.Center">
+        <RadzenColumn Size="12" SizeMD="6">
+            <RadzenText Text="Documentsdocuments" TextStyle="TextStyle.H3" TagName="TagName.H1" style="margin: 0" />
+        </RadzenColumn>
+        <RadzenColumn Size="12" SizeMD="6">
+            <RadzenStack Orientation="Orientation.Horizontal" AlignItems="AlignItems.Center" JustifyContent="JustifyContent.End" Gap="0.5rem">
+                <RadzenSplitButton Icon="get_app" Text="Export" Click="@ExportClick" Variant="Variant.Flat" Shade="Shade.Lighter">
+                    <RadzenSplitButtonItem Text="Excel" Value="xlsx" />
+                    <RadzenSplitButtonItem Text="CSV" Value="csv" />
+                </RadzenSplitButton>
+                <RadzenButton Icon="add_circle_outline" Text="Add" Click="@AddButtonClick" Variant="Variant.Flat" />
+            </RadzenStack>
+        </RadzenColumn>
+    </RadzenRow>
+    <RadzenTextBox Placeholder="Search ..." style="display: block; width: 100%" @oninput="@Search" aria-label="Search by all string columns" />
+    <RadzenRow>
+      <RadzenColumn SizeMD=12>
+        <RadzenDataGrid @ref="grid0" ColumnWidth="200px"   AllowFiltering="true" FilterMode="FilterMode.Advanced" AllowPaging="true" AllowSorting="true" ShowPagingSummary="true" PageSizeOptions=@(new int[]{5, 10, 20, 30})
+            Data="@documentsdocuments" LoadData="@Grid0LoadData" Count="@count" TItem="EspoNew.Server.Models.EspoDbNew.DocumentsDocument" RowDoubleClick="@EditRow" RowSelect="@GetChildData">
+            <Columns>
+                <RadzenDataGridColumn TItem="EspoNew.Server.Models.EspoDbNew.DocumentsDocument" Property="ETag" Title="E Tag">
+                </RadzenDataGridColumn>
+                <RadzenDataGridColumn TItem="EspoNew.Server.Models.EspoDbNew.DocumentsDocument" Property="document_id" Title="documentid">
+                </RadzenDataGridColumn>
+                <RadzenDataGridColumn TItem="EspoNew.Server.Models.EspoDbNew.DocumentsDocument" Property="name" Title="name">
+                </RadzenDataGridColumn>
+                <RadzenDataGridColumn TItem="EspoNew.Server.Models.EspoDbNew.DocumentsDocument" Property="deleted" Title="deleted">
+                </RadzenDataGridColumn>
+                <RadzenDataGridColumn TItem="EspoNew.Server.Models.EspoDbNew.DocumentsDocument" Property="status" Title="status">
+                </RadzenDataGridColumn>
+                <RadzenDataGridColumn TItem="EspoNew.Server.Models.EspoDbNew.DocumentsDocument" Property="type" Title="type">
+                </RadzenDataGridColumn>
+                <RadzenDataGridColumn TItem="EspoNew.Server.Models.EspoDbNew.DocumentsDocument" Property="publish_date" Title="publishdate">
+                </RadzenDataGridColumn>
+                <RadzenDataGridColumn TItem="EspoNew.Server.Models.EspoDbNew.DocumentsDocument" Property="expiration_date" Title="expirationdate">
+                </RadzenDataGridColumn>
+                <RadzenDataGridColumn TItem="EspoNew.Server.Models.EspoDbNew.DocumentsDocument" Property="description" Title="description">
+                </RadzenDataGridColumn>
+                <RadzenDataGridColumn TItem="EspoNew.Server.Models.EspoDbNew.DocumentsDocument" Property="file_id" Title="fileid">
+                </RadzenDataGridColumn>
+                <RadzenDataGridColumn TItem="EspoNew.Server.Models.EspoDbNew.DocumentsDocument" Property="employee.layout_set_id" Title="employee">
+                </RadzenDataGridColumn>
+                <RadzenDataGridColumn TItem="EspoNew.Server.Models.EspoDbNew.DocumentsDocument" Property="folder_id" Title="folderid">
+                </RadzenDataGridColumn>
+                <RadzenDataGridColumn TItem="EspoNew.Server.Models.EspoDbNew.DocumentsDocument" Filterable="false" Sortable="false" Width="70px" TextAlign="TextAlign.Center">
+                    <Template Context="documentsDocument">
+
+                        <RadzenButton ButtonStyle="ButtonStyle.Danger" Icon="delete" Size="ButtonSize.Medium"
+                            Shade="Shade.Lighter" Variant="Variant.Flat"
+                            Click=@(args => GridDeleteButtonClick(args, documentsDocument)) @onclick:stopPropagation="true" />
+                    </Template>
+                </RadzenDataGridColumn>
+            </Columns>
+
+        </RadzenDataGrid>
+
+                <RadzenStack Class="rz-my-8">
+                    <RadzenRow Gap="0" AlignItems="AlignItems.Center">
+                        <RadzenColumn Size="12" SizeMD="6">
+                            <RadzenText Visible="@(documentsDocumentChild != null)" Text="Accountsaccount_documents" TextStyle="TextStyle.H4" TagName="TagName.H2" style="margin: 0" />
+                        </RadzenColumn>
+                        <RadzenColumn Size="12" SizeMD="6">
+                            <RadzenStack Orientation="Orientation.Horizontal" AlignItems="AlignItems.Center" JustifyContent="JustifyContent.End" Gap="0.5rem">
+                                <RadzenButton Visible="@(documentsDocumentChild != null)" Icon="add_circle_outline" Text="Add" Click=@(args => Accountsaccount_documentsAddButtonClick(args,documentsDocumentChild)) />
+                            </RadzenStack>
+                        </RadzenColumn>
+                    </RadzenRow>
+                    <RadzenDataGrid ColumnWidth="200px" Visible="@(documentsDocumentChild != null)" @ref=Accountsaccount_documentsDataGrid AllowFiltering="true" FilterMode="Radzen.FilterMode.Advanced" AllowPaging="true" AllowSorting="true" ShowPagingSummary="true" PageSizeOptions=@(new int[]{5, 10, 20, 30})
+                      Data="@documentsDocumentChild?.Accountsaccount_documents" TItem="EspoNew.Server.Models.EspoDbNew.AccountsAccountDocument"  RowSelect="@(args => Accountsaccount_documentsRowSelect(args, documentsDocumentChild))">
+                      <Columns>
+                        <RadzenDataGridColumn TItem="EspoNew.Server.Models.EspoDbNew.AccountsAccountDocument" Property="ETag" Title="E Tag">
+                        </RadzenDataGridColumn>
+                        <RadzenDataGridColumn TItem="EspoNew.Server.Models.EspoDbNew.AccountsAccountDocument" Property="account_document_id" Title="accountdocumentid">
+                        </RadzenDataGridColumn>
+                        <RadzenDataGridColumn TItem="EspoNew.Server.Models.EspoDbNew.AccountsAccountDocument" Property="account.assigned_employee_id" Title="account">
+                        </RadzenDataGridColumn>
+                        <RadzenDataGridColumn TItem="EspoNew.Server.Models.EspoDbNew.AccountsAccountDocument" Property="document.folder_id" Title="document">
+                        </RadzenDataGridColumn>
+                        <RadzenDataGridColumn TItem="EspoNew.Server.Models.EspoDbNew.AccountsAccountDocument" Property="deleted" Title="deleted">
+                        </RadzenDataGridColumn>
+                        <RadzenDataGridColumn TItem="EspoNew.Server.Models.EspoDbNew.AccountsAccountDocument" Filterable="false" Sortable="false" Width="70px" TextAlign="TextAlign.Center">
+                            <Template Context="accountsAccountDocumentChild">
+
+                                <RadzenButton ButtonStyle="ButtonStyle.Danger" Icon="delete" Size="ButtonSize.Medium" Shade="Shade.Lighter" Variant="Variant.Flat"
+                                    Click=@(args => Accountsaccount_documentsDeleteButtonClick(args, accountsAccountDocumentChild)) @onclick:stopPropagation="true" />
+                            </Template>
+                        </RadzenDataGridColumn>
+                      </Columns>
+                    </RadzenDataGrid>
+                </RadzenStack>
+                <RadzenStack Class="rz-my-8">
+                    <RadzenRow Gap="0" AlignItems="AlignItems.Center">
+                        <RadzenColumn Size="12" SizeMD="6">
+                            <RadzenText Visible="@(documentsDocumentChild != null)" Text="Contactscontact_documents" TextStyle="TextStyle.H4" TagName="TagName.H2" style="margin: 0" />
+                        </RadzenColumn>
+                        <RadzenColumn Size="12" SizeMD="6">
+                            <RadzenStack Orientation="Orientation.Horizontal" AlignItems="AlignItems.Center" JustifyContent="JustifyContent.End" Gap="0.5rem">
+                                <RadzenButton Visible="@(documentsDocumentChild != null)" Icon="add_circle_outline" Text="Add" Click=@(args => Contactscontact_documentsAddButtonClick(args,documentsDocumentChild)) />
+                            </RadzenStack>
+                        </RadzenColumn>
+                    </RadzenRow>
+                    <RadzenDataGrid ColumnWidth="200px" Visible="@(documentsDocumentChild != null)" @ref=Contactscontact_documentsDataGrid AllowFiltering="true" FilterMode="Radzen.FilterMode.Advanced" AllowPaging="true" AllowSorting="true" ShowPagingSummary="true" PageSizeOptions=@(new int[]{5, 10, 20, 30})
+                      Data="@documentsDocumentChild?.Contactscontact_documents" TItem="EspoNew.Server.Models.EspoDbNew.ContactsContactDocument"  RowSelect="@(args => Contactscontact_documentsRowSelect(args, documentsDocumentChild))">
+                      <Columns>
+                        <RadzenDataGridColumn TItem="EspoNew.Server.Models.EspoDbNew.ContactsContactDocument" Property="ETag" Title="E Tag">
+                        </RadzenDataGridColumn>
+                        <RadzenDataGridColumn TItem="EspoNew.Server.Models.EspoDbNew.ContactsContactDocument" Property="contact_document_id" Title="contactdocumentid">
+                        </RadzenDataGridColumn>
+                        <RadzenDataGridColumn TItem="EspoNew.Server.Models.EspoDbNew.ContactsContactDocument" Property="contact.assigned_employee_id" Title="contact">
+                        </RadzenDataGridColumn>
+                        <RadzenDataGridColumn TItem="EspoNew.Server.Models.EspoDbNew.ContactsContactDocument" Property="document.folder_id" Title="document">
+                        </RadzenDataGridColumn>
+                        <RadzenDataGridColumn TItem="EspoNew.Server.Models.EspoDbNew.ContactsContactDocument" Property="deleted" Title="deleted">
+                        </RadzenDataGridColumn>
+                        <RadzenDataGridColumn TItem="EspoNew.Server.Models.EspoDbNew.ContactsContactDocument" Filterable="false" Sortable="false" Width="70px" TextAlign="TextAlign.Center">
+                            <Template Context="contactsContactDocumentChild">
+
+                                <RadzenButton ButtonStyle="ButtonStyle.Danger" Icon="delete" Size="ButtonSize.Medium" Shade="Shade.Lighter" Variant="Variant.Flat"
+                                    Click=@(args => Contactscontact_documentsDeleteButtonClick(args, contactsContactDocumentChild)) @onclick:stopPropagation="true" />
+                            </Template>
+                        </RadzenDataGridColumn>
+                      </Columns>
+                    </RadzenDataGrid>
+                </RadzenStack>
+                <RadzenStack Class="rz-my-8">
+                    <RadzenRow Gap="0" AlignItems="AlignItems.Center">
+                        <RadzenColumn Size="12" SizeMD="6">
+                            <RadzenText Visible="@(documentsDocumentChild != null)" Text="Documentsdocument_leads" TextStyle="TextStyle.H4" TagName="TagName.H2" style="margin: 0" />
+                        </RadzenColumn>
+                        <RadzenColumn Size="12" SizeMD="6">
+                            <RadzenStack Orientation="Orientation.Horizontal" AlignItems="AlignItems.Center" JustifyContent="JustifyContent.End" Gap="0.5rem">
+                                <RadzenButton Visible="@(documentsDocumentChild != null)" Icon="add_circle_outline" Text="Add" Click=@(args => Documentsdocument_leadsAddButtonClick(args,documentsDocumentChild)) />
+                            </RadzenStack>
+                        </RadzenColumn>
+                    </RadzenRow>
+                    <RadzenDataGrid ColumnWidth="200px" Visible="@(documentsDocumentChild != null)" @ref=Documentsdocument_leadsDataGrid AllowFiltering="true" FilterMode="Radzen.FilterMode.Advanced" AllowPaging="true" AllowSorting="true" ShowPagingSummary="true" PageSizeOptions=@(new int[]{5, 10, 20, 30})
+                      Data="@documentsDocumentChild?.Documentsdocument_leads" TItem="EspoNew.Server.Models.EspoDbNew.DocumentsDocumentLead"  RowSelect="@(args => Documentsdocument_leadsRowSelect(args, documentsDocumentChild))">
+                      <Columns>
+                        <RadzenDataGridColumn TItem="EspoNew.Server.Models.EspoDbNew.DocumentsDocumentLead" Property="ETag" Title="E Tag">
+                        </RadzenDataGridColumn>
+                        <RadzenDataGridColumn TItem="EspoNew.Server.Models.EspoDbNew.DocumentsDocumentLead" Property="document_lead_id" Title="documentleadid">
+                        </RadzenDataGridColumn>
+                        <RadzenDataGridColumn TItem="EspoNew.Server.Models.EspoDbNew.DocumentsDocumentLead" Property="document.folder_id" Title="document">
+                        </RadzenDataGridColumn>
+                        <RadzenDataGridColumn TItem="EspoNew.Server.Models.EspoDbNew.DocumentsDocumentLead" Property="lead.created_opportunity_id" Title="lead">
+                        </RadzenDataGridColumn>
+                        <RadzenDataGridColumn TItem="EspoNew.Server.Models.EspoDbNew.DocumentsDocumentLead" Property="deleted" Title="deleted">
+                        </RadzenDataGridColumn>
+                        <RadzenDataGridColumn TItem="EspoNew.Server.Models.EspoDbNew.DocumentsDocumentLead" Filterable="false" Sortable="false" Width="70px" TextAlign="TextAlign.Center">
+                            <Template Context="documentsDocumentLeadChild">
+
+                                <RadzenButton ButtonStyle="ButtonStyle.Danger" Icon="delete" Size="ButtonSize.Medium" Shade="Shade.Lighter" Variant="Variant.Flat"
+                                    Click=@(args => Documentsdocument_leadsDeleteButtonClick(args, documentsDocumentLeadChild)) @onclick:stopPropagation="true" />
+                            </Template>
+                        </RadzenDataGridColumn>
+                      </Columns>
+                    </RadzenDataGrid>
+                </RadzenStack>
+    </RadzenColumn>
+  </RadzenRow>
+</RadzenStack>

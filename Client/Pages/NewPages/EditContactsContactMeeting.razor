@@ -1,0 +1,53 @@
+@page "/edit-contacts-contact-meeting"
+
+<PageTitle>Edit ContactsContactMeeting</PageTitle>
+
+    <RadzenColumn SizeMD=12>
+        <RadzenAlert Shade="Shade.Lighter" Variant="Variant.Flat" Size="AlertSize.Small" AlertStyle="AlertStyle.Danger" Visible="@errorVisible">Cannot save ContactsContactMeeting</RadzenAlert>
+        <RadzenTemplateForm TItem="EspoNew.Server.Models.EspoDbNew.ContactsContactMeeting" Data="@contactsContactMeeting" Visible="@(contactsContactMeeting != null)" Submit="@FormSubmit">
+          <RadzenStack>
+            <RadzenFormField Text="E Tag" Variant="Variant.Filled">
+                  <ChildContent>
+                    <RadzenTextBox style="display: block; width: 100%" @bind-Value="@contactsContactMeeting.ETag" Name="ETag" />
+              </ChildContent>
+            </RadzenFormField>
+            <RadzenFormField Text="contactmeetingid" Variant="Variant.Filled">
+                  <ChildContent>
+                    <RadzenTextBox style="display: block; width: 100%" @bind-Value="@contactsContactMeeting.contact_meeting_id" Name="contact_meeting_id" />
+                  </ChildContent>    
+                  <Helper>
+                    <RadzenRequiredValidator Component="contact_meeting_id" Text="contact_meeting_id is required" />
+                  </Helper>
+            </RadzenFormField>
+            <RadzenFormField Text="contact" Variant="Variant.Filled">
+                  <ChildContent>
+                    <RadzenDropDownDataGrid Data="@contactscontactsForcontactId" TextProperty="assigned_employee_id" ValueProperty="contact_id" AllowClear=true
+                        Disabled=@(hascontact_idValue)  style="display: block; width: 100%" @bind-Value="@contactsContactMeeting.contact_id" Name="contact_id"
+                        SelectedValue=@contactscontactsForcontactIdValue Count=@contactscontactsForcontactIdCount LoadData=@contactscontactsForcontactIdLoadData />
+              </ChildContent>
+            </RadzenFormField>
+            <RadzenFormField Text="meeting" Variant="Variant.Filled">
+                  <ChildContent>
+                    <RadzenDropDownDataGrid Data="@meetingsmeetingsFormeetingId" TextProperty="assigned_employee_id" ValueProperty="meeting_id" AllowClear=true
+                        Disabled=@(hasmeeting_idValue)  style="display: block; width: 100%" @bind-Value="@contactsContactMeeting.meeting_id" Name="meeting_id"
+                        SelectedValue=@meetingsmeetingsFormeetingIdValue Count=@meetingsmeetingsFormeetingIdCount LoadData=@meetingsmeetingsFormeetingIdLoadData />
+              </ChildContent>
+            </RadzenFormField>
+            <RadzenFormField Text="status" Variant="Variant.Filled">
+                  <ChildContent>
+                    <RadzenTextBox style="display: block; width: 100%" @bind-Value="@contactsContactMeeting.status" Name="status" />
+              </ChildContent>
+            </RadzenFormField>
+            <RadzenFormField Text="deleted" Variant="Variant.Filled">
+                  <ChildContent>
+                    <RadzenNumeric style="display: block; width: 100%" @bind-Value="@contactsContactMeeting.deleted" Name="deleted" />
+              </ChildContent>
+            </RadzenFormField>
+          </RadzenStack>
+          <RadzenStack style="margin-top:1rem;" Orientation="Orientation.Horizontal" AlignItems="AlignItems.Center" JustifyContent="JustifyContent.End" Gap="0.5rem">
+                    <RadzenButton ButtonStyle="ButtonStyle.Primary" ButtonType="ButtonType.Submit" Icon="save" Text="Save" Variant="Variant.Flat" />
+                    <RadzenButton ButtonStyle="ButtonStyle.Light" Text="Cancel" Variant="Variant.Flat" Click="@CancelButtonClick"  />
+          </RadzenStack>
+        </RadzenTemplateForm>
+    </RadzenColumn>
+

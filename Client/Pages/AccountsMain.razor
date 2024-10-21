@@ -1,0 +1,33 @@
+@page "/accounts-main"
+
+<PageTitle>AccountsMain</PageTitle>
+<RadzenRow>
+    <RadzenColumn Size="12">
+        <RadzenText Text="AccountsMain" TextStyle="TextStyle.H3" TagName="TagName.H1" />
+    </RadzenColumn>
+</RadzenRow>
+<RadzenDataGrid TItem="EspoNew.Server.Models.EspoDbNew.AccountsAccount" Data="@accountsAccounts" ColumnWidth="200px" AllowSorting="true" AllowPaging="true" AllowFiltering="true" LoadData="@accountsAccountsLoadData" Count="@accountsAccountsCount" RowSelect="@DataGrid0RowSelect">
+    <Columns>
+        <RadzenDataGridColumn TItem="EspoNew.Server.Models.EspoDbNew.AccountsAccount" Property="account_id" Title="account_id" />
+        <RadzenDataGridColumn TItem="EspoNew.Server.Models.EspoDbNew.AccountsAccount" Property="assigned_employee_id" Title="assigned_employee_id" />
+        <RadzenDataGridColumn TItem="EspoNew.Server.Models.EspoDbNew.AccountsAccount" Property="billing_address_city" Title="billing_address_city" />
+        <RadzenDataGridColumn TItem="EspoNew.Server.Models.EspoDbNew.AccountsAccount" Property="billing_address_country" Title="billing_address_country" />
+        <RadzenDataGridColumn TItem="EspoNew.Server.Models.EspoDbNew.AccountsAccount" Property="billing_address_postal_code" Title="billing_address_postal_code" />
+        <RadzenDataGridColumn TItem="EspoNew.Server.Models.EspoDbNew.AccountsAccount" Property="billing_address_state" Title="billing_address_state" />
+        <RadzenDataGridColumn TItem="EspoNew.Server.Models.EspoDbNew.AccountsAccount" Property="billing_address_street" Title="billing_address_street" />
+        <RadzenDataGridColumn TItem="EspoNew.Server.Models.EspoDbNew.AccountsAccount" Property="campaign" Title="campaign" />
+        <RadzenDataGridColumn TItem="EspoNew.Server.Models.EspoDbNew.AccountsAccount" Property="campaign_id" Title="campaign_id" />
+        <RadzenDataGridColumn TItem="EspoNew.Server.Models.EspoDbNew.AccountsAccount" Property="deleted" Title="deleted" />
+        <RadzenDataGridColumn TItem="EspoNew.Server.Models.EspoDbNew.AccountsAccount" Property="description" Title="description" />
+        <RadzenDataGridColumn TItem="EspoNew.Server.Models.EspoDbNew.AccountsAccount" Property="industry" Title="industry" />
+        <RadzenDataGridColumn TItem="EspoNew.Server.Models.EspoDbNew.AccountsAccount" Property="name" Title="name" />
+        <RadzenDataGridColumn TItem="EspoNew.Server.Models.EspoDbNew.AccountsAccount" Property="shipping_address_city" Title="shipping_address_city" />
+        <RadzenDataGridColumn TItem="EspoNew.Server.Models.EspoDbNew.AccountsAccount" Property="shipping_address_country" Title="shipping_address_country" />
+        <RadzenDataGridColumn TItem="EspoNew.Server.Models.EspoDbNew.AccountsAccount" Property="shipping_address_postal_code" Title="shipping_address_postal_code" />
+        <RadzenDataGridColumn TItem="EspoNew.Server.Models.EspoDbNew.AccountsAccount" Property="shipping_address_state" Title="shipping_address_state" />
+        <RadzenDataGridColumn TItem="EspoNew.Server.Models.EspoDbNew.AccountsAccount" Property="shipping_address_street" Title="shipping_address_street" />
+        <RadzenDataGridColumn TItem="EspoNew.Server.Models.EspoDbNew.AccountsAccount" Property="sic_code" Title="sic_code" />
+        <RadzenDataGridColumn TItem="EspoNew.Server.Models.EspoDbNew.AccountsAccount" Property="type" Title="type" />
+        <RadzenDataGridColumn TItem="EspoNew.Server.Models.EspoDbNew.AccountsAccount" Property="website" Title="website" />
+    </Columns>
+</RadzenDataGrid>

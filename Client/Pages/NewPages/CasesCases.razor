@@ -1,0 +1,101 @@
+@page "/casescases"
+
+<PageTitle>Cases_cases</PageTitle>
+<RadzenStack>
+    <RadzenRow AlignItems="AlignItems.Center">
+        <RadzenColumn Size="12" SizeMD="6">
+            <RadzenText Text="Cases_cases" TextStyle="TextStyle.H3" TagName="TagName.H1" style="margin: 0" />
+        </RadzenColumn>
+        <RadzenColumn Size="12" SizeMD="6">
+            <RadzenStack Orientation="Orientation.Horizontal" AlignItems="AlignItems.Center" JustifyContent="JustifyContent.End" Gap="0.5rem">
+                <RadzenSplitButton Icon="get_app" Text="Export" Click="@ExportClick" Variant="Variant.Flat" Shade="Shade.Lighter">
+                    <RadzenSplitButtonItem Text="Excel" Value="xlsx" />
+                    <RadzenSplitButtonItem Text="CSV" Value="csv" />
+                </RadzenSplitButton>
+                <RadzenButton Icon="add_circle_outline" Text="Add" Click="@AddButtonClick" Variant="Variant.Flat" />
+            </RadzenStack>
+        </RadzenColumn>
+    </RadzenRow>
+    <RadzenTextBox Placeholder="Search ..." style="display: block; width: 100%" @oninput="@Search" aria-label="Search by all string columns" />
+    <RadzenRow>
+      <RadzenColumn SizeMD=12>
+        <RadzenDataGrid @ref="grid0" ColumnWidth="200px"   AllowFiltering="true" FilterMode="FilterMode.Advanced" AllowPaging="true" AllowSorting="true" ShowPagingSummary="true" PageSizeOptions=@(new int[]{5, 10, 20, 30})
+            Data="@casesCases" LoadData="@Grid0LoadData" Count="@count" TItem="EspoNew.Server.Models.EspoDbNew.CasesCase" RowDoubleClick="@EditRow" RowSelect="@GetChildData">
+            <Columns>
+                <RadzenDataGridColumn TItem="EspoNew.Server.Models.EspoDbNew.CasesCase" Property="ETag" Title="E Tag">
+                </RadzenDataGridColumn>
+                <RadzenDataGridColumn TItem="EspoNew.Server.Models.EspoDbNew.CasesCase" Property="case_id" Title="caseid">
+                </RadzenDataGridColumn>
+                <RadzenDataGridColumn TItem="EspoNew.Server.Models.EspoDbNew.CasesCase" Property="name" Title="name">
+                </RadzenDataGridColumn>
+                <RadzenDataGridColumn TItem="EspoNew.Server.Models.EspoDbNew.CasesCase" Property="deleted" Title="deleted">
+                </RadzenDataGridColumn>
+                <RadzenDataGridColumn TItem="EspoNew.Server.Models.EspoDbNew.CasesCase" Property="number" Title="number">
+                </RadzenDataGridColumn>
+                <RadzenDataGridColumn TItem="EspoNew.Server.Models.EspoDbNew.CasesCase" Property="status" Title="status">
+                </RadzenDataGridColumn>
+                <RadzenDataGridColumn TItem="EspoNew.Server.Models.EspoDbNew.CasesCase" Property="priority" Title="priority">
+                </RadzenDataGridColumn>
+                <RadzenDataGridColumn TItem="EspoNew.Server.Models.EspoDbNew.CasesCase" Property="type" Title="type">
+                </RadzenDataGridColumn>
+                <RadzenDataGridColumn TItem="EspoNew.Server.Models.EspoDbNew.CasesCase" Property="description" Title="description">
+                </RadzenDataGridColumn>
+                <RadzenDataGridColumn TItem="EspoNew.Server.Models.EspoDbNew.CasesCase" Property="account.assigned_employee_id" Title="account">
+                </RadzenDataGridColumn>
+                <RadzenDataGridColumn TItem="EspoNew.Server.Models.EspoDbNew.CasesCase" Property="lead.created_opportunity_id" Title="lead">
+                </RadzenDataGridColumn>
+                <RadzenDataGridColumn TItem="EspoNew.Server.Models.EspoDbNew.CasesCase" Property="contact.assigned_employee_id" Title="contact">
+                </RadzenDataGridColumn>
+                <RadzenDataGridColumn TItem="EspoNew.Server.Models.EspoDbNew.CasesCase" Property="inbound_email_id" Title="inboundemailid">
+                </RadzenDataGridColumn>
+                <RadzenDataGridColumn TItem="EspoNew.Server.Models.EspoDbNew.CasesCase" Property="assigned_employee_id" Title="assignedemployeeid">
+                </RadzenDataGridColumn>
+                <RadzenDataGridColumn TItem="EspoNew.Server.Models.EspoDbNew.CasesCase" Filterable="false" Sortable="false" Width="70px" TextAlign="TextAlign.Center">
+                    <Template Context="casesCase">
+
+                        <RadzenButton ButtonStyle="ButtonStyle.Danger" Icon="delete" Size="ButtonSize.Medium"
+                            Shade="Shade.Lighter" Variant="Variant.Flat"
+                            Click=@(args => GridDeleteButtonClick(args, casesCase)) @onclick:stopPropagation="true" />
+                    </Template>
+                </RadzenDataGridColumn>
+            </Columns>
+
+        </RadzenDataGrid>
+
+                <RadzenStack Class="rz-my-8">
+                    <RadzenRow Gap="0" AlignItems="AlignItems.Center">
+                        <RadzenColumn Size="12" SizeMD="6">
+                            <RadzenText Visible="@(casesCaseChild != null)" Text="Casescase_contacts" TextStyle="TextStyle.H4" TagName="TagName.H2" style="margin: 0" />
+                        </RadzenColumn>
+                        <RadzenColumn Size="12" SizeMD="6">
+                            <RadzenStack Orientation="Orientation.Horizontal" AlignItems="AlignItems.Center" JustifyContent="JustifyContent.End" Gap="0.5rem">
+                                <RadzenButton Visible="@(casesCaseChild != null)" Icon="add_circle_outline" Text="Add" Click=@(args => Casescase_contactsAddButtonClick(args,casesCaseChild)) />
+                            </RadzenStack>
+                        </RadzenColumn>
+                    </RadzenRow>
+                    <RadzenDataGrid ColumnWidth="200px" Visible="@(casesCaseChild != null)" @ref=Casescase_contactsDataGrid AllowFiltering="true" FilterMode="Radzen.FilterMode.Advanced" AllowPaging="true" AllowSorting="true" ShowPagingSummary="true" PageSizeOptions=@(new int[]{5, 10, 20, 30})
+                      Data="@casesCaseChild?.Casescase_contacts" TItem="EspoNew.Server.Models.EspoDbNew.CasesCaseContact"  RowSelect="@(args => Casescase_contactsRowSelect(args, casesCaseChild))">
+                      <Columns>
+                        <RadzenDataGridColumn TItem="EspoNew.Server.Models.EspoDbNew.CasesCaseContact" Property="ETag" Title="E Tag">
+                        </RadzenDataGridColumn>
+                        <RadzenDataGridColumn TItem="EspoNew.Server.Models.EspoDbNew.CasesCaseContact" Property="case_contact_id" Title="casecontactid">
+                        </RadzenDataGridColumn>
+                        <RadzenDataGridColumn TItem="EspoNew.Server.Models.EspoDbNew.CasesCaseContact" Property="_case.assigned_employee_id" Title="case">
+                        </RadzenDataGridColumn>
+                        <RadzenDataGridColumn TItem="EspoNew.Server.Models.EspoDbNew.CasesCaseContact" Property="contact.assigned_employee_id" Title="contact">
+                        </RadzenDataGridColumn>
+                        <RadzenDataGridColumn TItem="EspoNew.Server.Models.EspoDbNew.CasesCaseContact" Property="deleted" Title="deleted">
+                        </RadzenDataGridColumn>
+                        <RadzenDataGridColumn TItem="EspoNew.Server.Models.EspoDbNew.CasesCaseContact" Filterable="false" Sortable="false" Width="70px" TextAlign="TextAlign.Center">
+                            <Template Context="casesCaseContactChild">
+
+                                <RadzenButton ButtonStyle="ButtonStyle.Danger" Icon="delete" Size="ButtonSize.Medium" Shade="Shade.Lighter" Variant="Variant.Flat"
+                                    Click=@(args => Casescase_contactsDeleteButtonClick(args, casesCaseContactChild)) @onclick:stopPropagation="true" />
+                            </Template>
+                        </RadzenDataGridColumn>
+                      </Columns>
+                    </RadzenDataGrid>
+                </RadzenStack>
+    </RadzenColumn>
+  </RadzenRow>
+</RadzenStack>

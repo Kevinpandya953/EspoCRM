@@ -1,0 +1,49 @@
+@page "/edit-target-target-list"
+
+<PageTitle>Edit TargetTargetList</PageTitle>
+
+    <RadzenColumn SizeMD=12>
+        <RadzenAlert Shade="Shade.Lighter" Variant="Variant.Flat" Size="AlertSize.Small" AlertStyle="AlertStyle.Danger" Visible="@errorVisible">Cannot save TargetTargetList</RadzenAlert>
+        <RadzenTemplateForm TItem="EspoNew.Server.Models.EspoDbNew.TargetTargetList" Data="@targetTargetList" Visible="@(targetTargetList != null)" Submit="@FormSubmit">
+          <RadzenStack>
+            <RadzenFormField Text="E Tag" Variant="Variant.Filled">
+                  <ChildContent>
+                    <RadzenTextBox style="display: block; width: 100%" @bind-Value="@targetTargetList.ETag" Name="ETag" />
+              </ChildContent>
+            </RadzenFormField>
+            <RadzenFormField Text="targetlistid" Variant="Variant.Filled">
+                  <ChildContent>
+                    <RadzenTextBox style="display: block; width: 100%" @bind-Value="@targetTargetList.target_list_id" Name="target_list_id" />
+                  </ChildContent>    
+                  <Helper>
+                    <RadzenRequiredValidator Component="target_list_id" Text="target_list_id is required" />
+                  </Helper>
+            </RadzenFormField>
+            <RadzenFormField Text="name" Variant="Variant.Filled">
+                  <ChildContent>
+                    <RadzenTextBox style="display: block; width: 100%" @bind-Value="@targetTargetList.name" Name="name" />
+              </ChildContent>
+            </RadzenFormField>
+            <RadzenFormField Text="deleted" Variant="Variant.Filled">
+                  <ChildContent>
+                    <RadzenNumeric style="display: block; width: 100%" @bind-Value="@targetTargetList.deleted" Name="deleted" />
+              </ChildContent>
+            </RadzenFormField>
+            <RadzenFormField Text="description" Variant="Variant.Filled">
+                  <ChildContent>
+                    <RadzenTextBox style="display: block; width: 100%" @bind-Value="@targetTargetList.description" Name="description" />
+              </ChildContent>
+            </RadzenFormField>
+            <RadzenFormField Text="assigneduserid" Variant="Variant.Filled">
+                  <ChildContent>
+                    <RadzenTextBox style="display: block; width: 100%" @bind-Value="@targetTargetList.assigned_user_id" Name="assigned_user_id" />
+              </ChildContent>
+            </RadzenFormField>
+          </RadzenStack>
+          <RadzenStack style="margin-top:1rem;" Orientation="Orientation.Horizontal" AlignItems="AlignItems.Center" JustifyContent="JustifyContent.End" Gap="0.5rem">
+                    <RadzenButton ButtonStyle="ButtonStyle.Primary" ButtonType="ButtonType.Submit" Icon="save" Text="Save" Variant="Variant.Flat" />
+                    <RadzenButton ButtonStyle="ButtonStyle.Light" Text="Cancel" Variant="Variant.Flat" Click="@CancelButtonClick"  />
+          </RadzenStack>
+        </RadzenTemplateForm>
+    </RadzenColumn>
+

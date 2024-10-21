@@ -1,0 +1,114 @@
+@page "/edit-contacts-contact"
+
+<PageTitle>Edit ContactsContact</PageTitle>
+
+    <RadzenColumn SizeMD=12>
+        <RadzenAlert Shade="Shade.Lighter" Variant="Variant.Flat" Size="AlertSize.Small" AlertStyle="AlertStyle.Danger" Visible="@errorVisible">Cannot save ContactsContact</RadzenAlert>
+        <RadzenTemplateForm TItem="EspoNew.Server.Models.EspoDbNew.ContactsContact" Data="@contactsContact" Visible="@(contactsContact != null)" Submit="@FormSubmit">
+          <RadzenStack>
+            <RadzenFormField Text="E Tag" Variant="Variant.Filled">
+                  <ChildContent>
+                    <RadzenTextBox style="display: block; width: 100%" @bind-Value="@contactsContact.ETag" Name="ETag" />
+              </ChildContent>
+            </RadzenFormField>
+            <RadzenFormField Text="contactid" Variant="Variant.Filled">
+                  <ChildContent>
+                    <RadzenTextBox style="display: block; width: 100%" @bind-Value="@contactsContact.contact_id" Name="contact_id" />
+                  </ChildContent>    
+                  <Helper>
+                    <RadzenRequiredValidator Component="contact_id" Text="contact_id is required" />
+                  </Helper>
+            </RadzenFormField>
+            <RadzenFormField Text="deleted" Variant="Variant.Filled">
+                  <ChildContent>
+                    <RadzenNumeric style="display: block; width: 100%" @bind-Value="@contactsContact.deleted" Name="deleted" />
+              </ChildContent>
+            </RadzenFormField>
+            <RadzenFormField Text="salutationname" Variant="Variant.Filled">
+                  <ChildContent>
+                    <RadzenTextBox style="display: block; width: 100%" @bind-Value="@contactsContact.salutation_name" Name="salutation_name" />
+              </ChildContent>
+            </RadzenFormField>
+            <RadzenFormField Text="firstname" Variant="Variant.Filled">
+                  <ChildContent>
+                    <RadzenTextBox style="display: block; width: 100%" @bind-Value="@contactsContact.first_name" Name="first_name" />
+              </ChildContent>
+            </RadzenFormField>
+            <RadzenFormField Text="lastname" Variant="Variant.Filled">
+                  <ChildContent>
+                    <RadzenTextBox style="display: block; width: 100%" @bind-Value="@contactsContact.last_name" Name="last_name" />
+              </ChildContent>
+            </RadzenFormField>
+            <RadzenFormField Text="description" Variant="Variant.Filled">
+                  <ChildContent>
+                    <RadzenTextBox style="display: block; width: 100%" @bind-Value="@contactsContact.description" Name="description" />
+              </ChildContent>
+            </RadzenFormField>
+            <RadzenFormField Text="donotcall" Variant="Variant.Filled">
+                  <ChildContent>
+                    <RadzenNumeric style="display: block; width: 100%" @bind-Value="@contactsContact.do_not_call" Name="do_not_call" />
+              </ChildContent>
+            </RadzenFormField>
+            <RadzenFormField Text="addressstreet" Variant="Variant.Filled">
+                  <ChildContent>
+                    <RadzenTextBox style="display: block; width: 100%" @bind-Value="@contactsContact.address_street" Name="address_street" />
+              </ChildContent>
+            </RadzenFormField>
+            <RadzenFormField Text="addresscity" Variant="Variant.Filled">
+                  <ChildContent>
+                    <RadzenDropDownDataGrid Data="@addressaddressCitiesForaddressCityId" TextProperty="state_id" ValueProperty="city_id" AllowClear=true
+                        Disabled=@(hasaddress_city_idValue)  style="display: block; width: 100%" @bind-Value="@contactsContact.address_city_id" Name="address_city_id"
+                        SelectedValue=@addressaddressCitiesForaddressCityIdValue Count=@addressaddressCitiesForaddressCityIdCount LoadData=@addressaddressCitiesForaddressCityIdLoadData />
+              </ChildContent>
+            </RadzenFormField>
+            <RadzenFormField Text="addressstate" Variant="Variant.Filled">
+                  <ChildContent>
+                    <RadzenDropDownDataGrid Data="@addressaddressStatesForaddressStateId" TextProperty="country_id" ValueProperty="state_id" AllowClear=true
+                        Disabled=@(hasaddress_state_idValue)  style="display: block; width: 100%" @bind-Value="@contactsContact.address_state_id" Name="address_state_id"
+                        SelectedValue=@addressaddressStatesForaddressStateIdValue Count=@addressaddressStatesForaddressStateIdCount LoadData=@addressaddressStatesForaddressStateIdLoadData />
+              </ChildContent>
+            </RadzenFormField>
+            <RadzenFormField Text="addresscountry" Variant="Variant.Filled">
+                  <ChildContent>
+                    <RadzenDropDownDataGrid Data="@addressaddressCountriesForaddressCountryId" TextProperty="country_name" ValueProperty="country_id" AllowClear=true
+                        Disabled=@(hasaddress_country_idValue)  style="display: block; width: 100%" @bind-Value="@contactsContact.address_country_id" Name="address_country_id"
+                        SelectedValue=@addressaddressCountriesForaddressCountryIdValue Count=@addressaddressCountriesForaddressCountryIdCount LoadData=@addressaddressCountriesForaddressCountryIdLoadData />
+              </ChildContent>
+            </RadzenFormField>
+            <RadzenFormField Text="addresspostalcode" Variant="Variant.Filled">
+                  <ChildContent>
+                    <RadzenTextBox style="display: block; width: 100%" @bind-Value="@contactsContact.address_postal_code" Name="address_postal_code" />
+              </ChildContent>
+            </RadzenFormField>
+            <RadzenFormField Text="middlename" Variant="Variant.Filled">
+                  <ChildContent>
+                    <RadzenTextBox style="display: block; width: 100%" @bind-Value="@contactsContact.middle_name" Name="middle_name" />
+              </ChildContent>
+            </RadzenFormField>
+            <RadzenFormField Text="account" Variant="Variant.Filled">
+                  <ChildContent>
+                    <RadzenDropDownDataGrid Data="@accountsaccountsForaccountId" TextProperty="assigned_employee_id" ValueProperty="account_id" AllowClear=true
+                        Disabled=@(hasaccount_idValue)  style="display: block; width: 100%" @bind-Value="@contactsContact.account_id" Name="account_id"
+                        SelectedValue=@accountsaccountsForaccountIdValue Count=@accountsaccountsForaccountIdCount LoadData=@accountsaccountsForaccountIdLoadData />
+              </ChildContent>
+            </RadzenFormField>
+            <RadzenFormField Text="campaign" Variant="Variant.Filled">
+                  <ChildContent>
+                    <RadzenDropDownDataGrid Data="@campaigncampaignsForcampaignId" TextProperty="users_template_id" ValueProperty="campaign_id" AllowClear=true
+                        Disabled=@(hascampaign_idValue)  style="display: block; width: 100%" @bind-Value="@contactsContact.campaign_id" Name="campaign_id"
+                        SelectedValue=@campaigncampaignsForcampaignIdValue Count=@campaigncampaignsForcampaignIdCount LoadData=@campaigncampaignsForcampaignIdLoadData />
+              </ChildContent>
+            </RadzenFormField>
+            <RadzenFormField Text="assignedemployeeid" Variant="Variant.Filled">
+                  <ChildContent>
+                    <RadzenTextBox style="display: block; width: 100%" @bind-Value="@contactsContact.assigned_employee_id" Name="assigned_employee_id" />
+              </ChildContent>
+            </RadzenFormField>
+          </RadzenStack>
+          <RadzenStack style="margin-top:1rem;" Orientation="Orientation.Horizontal" AlignItems="AlignItems.Center" JustifyContent="JustifyContent.End" Gap="0.5rem">
+                    <RadzenButton ButtonStyle="ButtonStyle.Primary" ButtonType="ButtonType.Submit" Icon="save" Text="Save" Variant="Variant.Flat" />
+                    <RadzenButton ButtonStyle="ButtonStyle.Light" Text="Cancel" Variant="Variant.Flat" Click="@CancelButtonClick"  />
+          </RadzenStack>
+        </RadzenTemplateForm>
+    </RadzenColumn>
+

@@ -1,0 +1,47 @@
+@page "/add-contacts-contact-document"
+
+<PageTitle>Add ContactsContactDocument</PageTitle>
+    <RadzenColumn SizeMD=12>
+        <RadzenAlert Shade="Shade.Lighter" Variant="Variant.Flat" Size="AlertSize.Small" AlertStyle="AlertStyle.Danger" Visible="@errorVisible">Cannot save ContactsContactDocument</RadzenAlert>
+        <RadzenTemplateForm TItem="EspoNew.Server.Models.EspoDbNew.ContactsContactDocument" Data="@contactsContactDocument" Visible="@(contactsContactDocument != null)" Submit="@FormSubmit">
+          <RadzenStack>
+            <RadzenFormField Text="E Tag" Variant="Variant.Filled">
+                  <ChildContent>
+                    <RadzenTextBox style="display: block; width: 100%" @bind-Value="@contactsContactDocument.ETag" Name="ETag" />
+              </ChildContent>
+            </RadzenFormField>
+            <RadzenFormField Text="contactdocumentid" Variant="Variant.Filled">
+                  <ChildContent>
+                    <RadzenTextBox style="display: block; width: 100%" @bind-Value="@contactsContactDocument.contact_document_id" Name="contact_document_id" />
+                  </ChildContent>    
+                  <Helper>
+                    <RadzenRequiredValidator Component="contact_document_id" Text="contact_document_id is required" />
+                  </Helper>
+            </RadzenFormField>
+            <RadzenFormField Text="contact" Variant="Variant.Filled">
+                  <ChildContent>
+                    <RadzenDropDownDataGrid Data="@contactscontactsForcontactId" TextProperty="assigned_employee_id" ValueProperty="contact_id" AllowClear=true
+                        Disabled=@(hascontact_idValue)  style="display: block; width: 100%" @bind-Value="@contactsContactDocument.contact_id" Name="contact_id"
+                        SelectedValue=@contactscontactsForcontactIdValue Count=@contactscontactsForcontactIdCount LoadData=@contactscontactsForcontactIdLoadData />
+              </ChildContent>
+            </RadzenFormField>
+            <RadzenFormField Text="document" Variant="Variant.Filled">
+                  <ChildContent>
+                    <RadzenDropDownDataGrid Data="@documentsdocumentsFordocumentId" TextProperty="folder_id" ValueProperty="document_id" AllowClear=true
+                        Disabled=@(hasdocument_idValue)  style="display: block; width: 100%" @bind-Value="@contactsContactDocument.document_id" Name="document_id"
+                        SelectedValue=@documentsdocumentsFordocumentIdValue Count=@documentsdocumentsFordocumentIdCount LoadData=@documentsdocumentsFordocumentIdLoadData />
+              </ChildContent>
+            </RadzenFormField>
+            <RadzenFormField Text="deleted" Variant="Variant.Filled">
+                  <ChildContent>
+                    <RadzenNumeric style="display: block; width: 100%" @bind-Value="@contactsContactDocument.deleted" Name="deleted" />
+              </ChildContent>
+            </RadzenFormField>
+          </RadzenStack>
+          <RadzenStack style="margin-top:1rem;" Orientation="Orientation.Horizontal" AlignItems="AlignItems.Center" JustifyContent="JustifyContent.End" Gap="0.5rem">
+                    <RadzenButton ButtonStyle="ButtonStyle.Primary" ButtonType="ButtonType.Submit" Icon="save" Text="Save" Variant="Variant.Flat" />
+                    <RadzenButton ButtonStyle="ButtonStyle.Light" Text="Cancel" Variant="Variant.Flat" Click="@CancelButtonClick"  />
+          </RadzenStack>
+        </RadzenTemplateForm>
+    </RadzenColumn>
+

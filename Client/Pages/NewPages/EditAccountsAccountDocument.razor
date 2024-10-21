@@ -1,0 +1,48 @@
+@page "/edit-accounts-account-document"
+
+<PageTitle>Edit AccountsAccountDocument</PageTitle>
+
+    <RadzenColumn SizeMD=12>
+        <RadzenAlert Shade="Shade.Lighter" Variant="Variant.Flat" Size="AlertSize.Small" AlertStyle="AlertStyle.Danger" Visible="@errorVisible">Cannot save AccountsAccountDocument</RadzenAlert>
+        <RadzenTemplateForm TItem="EspoNew.Server.Models.EspoDbNew.AccountsAccountDocument" Data="@accountsAccountDocument" Visible="@(accountsAccountDocument != null)" Submit="@FormSubmit">
+          <RadzenStack>
+            <RadzenFormField Text="E Tag" Variant="Variant.Filled">
+                  <ChildContent>
+                    <RadzenTextBox style="display: block; width: 100%" @bind-Value="@accountsAccountDocument.ETag" Name="ETag" />
+              </ChildContent>
+            </RadzenFormField>
+            <RadzenFormField Text="accountdocumentid" Variant="Variant.Filled">
+                  <ChildContent>
+                    <RadzenTextBox style="display: block; width: 100%" @bind-Value="@accountsAccountDocument.account_document_id" Name="account_document_id" />
+                  </ChildContent>    
+                  <Helper>
+                    <RadzenRequiredValidator Component="account_document_id" Text="account_document_id is required" />
+                  </Helper>
+            </RadzenFormField>
+            <RadzenFormField Text="account" Variant="Variant.Filled">
+                  <ChildContent>
+                    <RadzenDropDownDataGrid Data="@accountsaccountsForaccountId" TextProperty="assigned_employee_id" ValueProperty="account_id" AllowClear=true
+                        Disabled=@(hasaccount_idValue)  style="display: block; width: 100%" @bind-Value="@accountsAccountDocument.account_id" Name="account_id"
+                        SelectedValue=@accountsaccountsForaccountIdValue Count=@accountsaccountsForaccountIdCount LoadData=@accountsaccountsForaccountIdLoadData />
+              </ChildContent>
+            </RadzenFormField>
+            <RadzenFormField Text="document" Variant="Variant.Filled">
+                  <ChildContent>
+                    <RadzenDropDownDataGrid Data="@documentsdocumentsFordocumentId" TextProperty="folder_id" ValueProperty="document_id" AllowClear=true
+                        Disabled=@(hasdocument_idValue)  style="display: block; width: 100%" @bind-Value="@accountsAccountDocument.document_id" Name="document_id"
+                        SelectedValue=@documentsdocumentsFordocumentIdValue Count=@documentsdocumentsFordocumentIdCount LoadData=@documentsdocumentsFordocumentIdLoadData />
+              </ChildContent>
+            </RadzenFormField>
+            <RadzenFormField Text="deleted" Variant="Variant.Filled">
+                  <ChildContent>
+                    <RadzenNumeric style="display: block; width: 100%" @bind-Value="@accountsAccountDocument.deleted" Name="deleted" />
+              </ChildContent>
+            </RadzenFormField>
+          </RadzenStack>
+          <RadzenStack style="margin-top:1rem;" Orientation="Orientation.Horizontal" AlignItems="AlignItems.Center" JustifyContent="JustifyContent.End" Gap="0.5rem">
+                    <RadzenButton ButtonStyle="ButtonStyle.Primary" ButtonType="ButtonType.Submit" Icon="save" Text="Save" Variant="Variant.Flat" />
+                    <RadzenButton ButtonStyle="ButtonStyle.Light" Text="Cancel" Variant="Variant.Flat" Click="@CancelButtonClick"  />
+          </RadzenStack>
+        </RadzenTemplateForm>
+    </RadzenColumn>
+

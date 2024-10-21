@@ -1,0 +1,106 @@
+@page "/add-opportunities-opportunity"
+
+<PageTitle>Add OpportunitiesOpportunity</PageTitle>
+    <RadzenColumn SizeMD=12>
+        <RadzenAlert Shade="Shade.Lighter" Variant="Variant.Flat" Size="AlertSize.Small" AlertStyle="AlertStyle.Danger" Visible="@errorVisible">Cannot save OpportunitiesOpportunity</RadzenAlert>
+        <RadzenTemplateForm TItem="EspoNew.Server.Models.EspoDbNew.OpportunitiesOpportunity" Data="@opportunitiesOpportunity" Visible="@(opportunitiesOpportunity != null)" Submit="@FormSubmit">
+          <RadzenStack>
+            <RadzenFormField Text="E Tag" Variant="Variant.Filled">
+                  <ChildContent>
+                    <RadzenTextBox style="display: block; width: 100%" @bind-Value="@opportunitiesOpportunity.ETag" Name="ETag" />
+              </ChildContent>
+            </RadzenFormField>
+            <RadzenFormField Text="opportunityid" Variant="Variant.Filled">
+                  <ChildContent>
+                    <RadzenTextBox style="display: block; width: 100%" @bind-Value="@opportunitiesOpportunity.opportunity_id" Name="opportunity_id" />
+                  </ChildContent>    
+                  <Helper>
+                    <RadzenRequiredValidator Component="opportunity_id" Text="opportunity_id is required" />
+                  </Helper>
+            </RadzenFormField>
+            <RadzenFormField Text="name" Variant="Variant.Filled">
+                  <ChildContent>
+                    <RadzenTextBox style="display: block; width: 100%" @bind-Value="@opportunitiesOpportunity.name" Name="name" />
+              </ChildContent>
+            </RadzenFormField>
+            <RadzenFormField Text="deleted" Variant="Variant.Filled">
+                  <ChildContent>
+                    <RadzenNumeric style="display: block; width: 100%" @bind-Value="@opportunitiesOpportunity.deleted" Name="deleted" />
+              </ChildContent>
+            </RadzenFormField>
+            <RadzenFormField Text="amount" Variant="Variant.Filled">
+                  <ChildContent>
+                    <RadzenNumeric style="display: block; width: 100%" @bind-Value="@opportunitiesOpportunity.amount" Name="amount" />
+              </ChildContent>
+            </RadzenFormField>
+            <RadzenFormField Text="stage" Variant="Variant.Filled">
+                  <ChildContent>
+                    <RadzenTextBox style="display: block; width: 100%" @bind-Value="@opportunitiesOpportunity.stage" Name="stage" />
+              </ChildContent>
+            </RadzenFormField>
+            <RadzenFormField Text="laststage" Variant="Variant.Filled">
+                  <ChildContent>
+                    <RadzenTextBox style="display: block; width: 100%" @bind-Value="@opportunitiesOpportunity.last_stage" Name="last_stage" />
+              </ChildContent>
+            </RadzenFormField>
+            <RadzenFormField Text="probability" Variant="Variant.Filled">
+                  <ChildContent>
+                    <RadzenNumeric style="display: block; width: 100%" @bind-Value="@opportunitiesOpportunity.probability" Name="probability" />
+              </ChildContent>
+            </RadzenFormField>
+            <RadzenFormField Text="leadsource" Variant="Variant.Filled">
+                  <ChildContent>
+                    <RadzenTextBox style="display: block; width: 100%" @bind-Value="@opportunitiesOpportunity.lead_source" Name="lead_source" />
+              </ChildContent>
+            </RadzenFormField>
+            <RadzenFormField Text="closedate" Variant="Variant.Filled">
+                  <ChildContent>
+                    <RadzenDatePicker DateFormat="MM/dd/yyyy" style="display: block; width: 100%" @bind-Value="@opportunitiesOpportunity.close_date" Name="close_date" />
+              </ChildContent>
+            </RadzenFormField>
+            <RadzenFormField Text="description" Variant="Variant.Filled">
+                  <ChildContent>
+                    <RadzenTextBox style="display: block; width: 100%" @bind-Value="@opportunitiesOpportunity.description" Name="description" />
+              </ChildContent>
+            </RadzenFormField>
+            <RadzenFormField Text="amountcurrency" Variant="Variant.Filled">
+                  <ChildContent>
+                    <RadzenTextBox style="display: block; width: 100%" @bind-Value="@opportunitiesOpportunity.amount_currency" Name="amount_currency" />
+              </ChildContent>
+            </RadzenFormField>
+            <RadzenFormField Text="account" Variant="Variant.Filled">
+                  <ChildContent>
+                    <RadzenDropDownDataGrid Data="@accountsaccountsForaccountId" TextProperty="assigned_employee_id" ValueProperty="account_id" AllowClear=true
+                        Disabled=@(hasaccount_idValue)  style="display: block; width: 100%" @bind-Value="@opportunitiesOpportunity.account_id" Name="account_id"
+                        SelectedValue=@accountsaccountsForaccountIdValue Count=@accountsaccountsForaccountIdCount LoadData=@accountsaccountsForaccountIdLoadData />
+              </ChildContent>
+            </RadzenFormField>
+            <RadzenFormField Text="contact" Variant="Variant.Filled">
+                  <ChildContent>
+                    <RadzenDropDownDataGrid Data="@contactscontactsForcontactId" TextProperty="assigned_employee_id" ValueProperty="contact_id" AllowClear=true
+                        Disabled=@(hascontact_idValue)  style="display: block; width: 100%" @bind-Value="@opportunitiesOpportunity.contact_id" Name="contact_id"
+                        SelectedValue=@contactscontactsForcontactIdValue Count=@contactscontactsForcontactIdCount LoadData=@contactscontactsForcontactIdLoadData />
+              </ChildContent>
+            </RadzenFormField>
+            <RadzenFormField Text="campaign" Variant="Variant.Filled">
+                  <ChildContent>
+                    <RadzenDropDownDataGrid Data="@campaigncampaignsForcampaignId" TextProperty="users_template_id" ValueProperty="campaign_id" AllowClear=true
+                        Disabled=@(hascampaign_idValue)  style="display: block; width: 100%" @bind-Value="@opportunitiesOpportunity.campaign_id" Name="campaign_id"
+                        SelectedValue=@campaigncampaignsForcampaignIdValue Count=@campaigncampaignsForcampaignIdCount LoadData=@campaigncampaignsForcampaignIdLoadData />
+              </ChildContent>
+            </RadzenFormField>
+            <RadzenFormField Text="employee" Variant="Variant.Filled">
+                  <ChildContent>
+                    <RadzenDropDownDataGrid Data="@employeesemployeesForassignedEmployeeId" TextProperty="layout_set_id" ValueProperty="employee_id" AllowClear=true
+                        Disabled=@(hasassigned_employee_idValue)  style="display: block; width: 100%" @bind-Value="@opportunitiesOpportunity.assigned_employee_id" Name="assigned_employee_id"
+                        SelectedValue=@employeesemployeesForassignedEmployeeIdValue Count=@employeesemployeesForassignedEmployeeIdCount LoadData=@employeesemployeesForassignedEmployeeIdLoadData />
+              </ChildContent>
+            </RadzenFormField>
+          </RadzenStack>
+          <RadzenStack style="margin-top:1rem;" Orientation="Orientation.Horizontal" AlignItems="AlignItems.Center" JustifyContent="JustifyContent.End" Gap="0.5rem">
+                    <RadzenButton ButtonStyle="ButtonStyle.Primary" ButtonType="ButtonType.Submit" Icon="save" Text="Save" Variant="Variant.Flat" />
+                    <RadzenButton ButtonStyle="ButtonStyle.Light" Text="Cancel" Variant="Variant.Flat" Click="@CancelButtonClick"  />
+          </RadzenStack>
+        </RadzenTemplateForm>
+    </RadzenColumn>
+

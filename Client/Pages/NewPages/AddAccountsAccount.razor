@@ -1,0 +1,127 @@
+@page "/add-accounts-account"
+
+<PageTitle>Add AccountsAccount</PageTitle>
+    <RadzenColumn SizeMD=12>
+        <RadzenAlert Shade="Shade.Lighter" Variant="Variant.Flat" Size="AlertSize.Small" AlertStyle="AlertStyle.Danger" Visible="@errorVisible">Cannot save AccountsAccount</RadzenAlert>
+        <RadzenTemplateForm TItem="EspoNew.Server.Models.EspoDbNew.AccountsAccount" Data="@accountsAccount" Visible="@(accountsAccount != null)" Submit="@FormSubmit">
+          <RadzenStack>
+            <RadzenFormField Text="E Tag" Variant="Variant.Filled">
+                  <ChildContent>
+                    <RadzenTextBox style="display: block; width: 100%" @bind-Value="@accountsAccount.ETag" Name="ETag" />
+              </ChildContent>
+            </RadzenFormField>
+            <RadzenFormField Text="accountid" Variant="Variant.Filled">
+                  <ChildContent>
+                    <RadzenTextBox style="display: block; width: 100%" @bind-Value="@accountsAccount.account_id" Name="account_id" />
+                  </ChildContent>    
+                  <Helper>
+                    <RadzenRequiredValidator Component="account_id" Text="account_id is required" />
+                  </Helper>
+            </RadzenFormField>
+            <RadzenFormField Text="name" Variant="Variant.Filled">
+                  <ChildContent>
+                    <RadzenTextBox style="display: block; width: 100%" @bind-Value="@accountsAccount.name" Name="name" />
+              </ChildContent>
+            </RadzenFormField>
+            <RadzenFormField Text="deleted" Variant="Variant.Filled">
+                  <ChildContent>
+                    <RadzenNumeric style="display: block; width: 100%" @bind-Value="@accountsAccount.deleted" Name="deleted" />
+              </ChildContent>
+            </RadzenFormField>
+            <RadzenFormField Text="website" Variant="Variant.Filled">
+                  <ChildContent>
+                    <RadzenTextBox style="display: block; width: 100%" @bind-Value="@accountsAccount.website" Name="website" />
+              </ChildContent>
+            </RadzenFormField>
+            <RadzenFormField Text="type" Variant="Variant.Filled">
+                  <ChildContent>
+                    <RadzenTextBox style="display: block; width: 100%" @bind-Value="@accountsAccount.type" Name="type" />
+              </ChildContent>
+            </RadzenFormField>
+            <RadzenFormField Text="industry" Variant="Variant.Filled">
+                  <ChildContent>
+                    <RadzenTextBox style="display: block; width: 100%" @bind-Value="@accountsAccount.industry" Name="industry" />
+              </ChildContent>
+            </RadzenFormField>
+            <RadzenFormField Text="siccode" Variant="Variant.Filled">
+                  <ChildContent>
+                    <RadzenTextBox style="display: block; width: 100%" @bind-Value="@accountsAccount.sic_code" Name="sic_code" />
+              </ChildContent>
+            </RadzenFormField>
+            <RadzenFormField Text="billingaddressstreet" Variant="Variant.Filled">
+                  <ChildContent>
+                    <RadzenTextBox style="display: block; width: 100%" @bind-Value="@accountsAccount.billing_address_street" Name="billing_address_street" />
+              </ChildContent>
+            </RadzenFormField>
+            <RadzenFormField Text="billingaddresscity" Variant="Variant.Filled">
+                  <ChildContent>
+                    <RadzenTextBox style="display: block; width: 100%" @bind-Value="@accountsAccount.billing_address_city" Name="billing_address_city" />
+              </ChildContent>
+            </RadzenFormField>
+            <RadzenFormField Text="billingaddressstate" Variant="Variant.Filled">
+                  <ChildContent>
+                    <RadzenTextBox style="display: block; width: 100%" @bind-Value="@accountsAccount.billing_address_state" Name="billing_address_state" />
+              </ChildContent>
+            </RadzenFormField>
+            <RadzenFormField Text="billingaddresscountry" Variant="Variant.Filled">
+                  <ChildContent>
+                    <RadzenTextBox style="display: block; width: 100%" @bind-Value="@accountsAccount.billing_address_country" Name="billing_address_country" />
+              </ChildContent>
+            </RadzenFormField>
+            <RadzenFormField Text="billingaddresspostalcode" Variant="Variant.Filled">
+                  <ChildContent>
+                    <RadzenTextBox style="display: block; width: 100%" @bind-Value="@accountsAccount.billing_address_postal_code" Name="billing_address_postal_code" />
+              </ChildContent>
+            </RadzenFormField>
+            <RadzenFormField Text="shippingaddressstreet" Variant="Variant.Filled">
+                  <ChildContent>
+                    <RadzenTextBox style="display: block; width: 100%" @bind-Value="@accountsAccount.shipping_address_street" Name="shipping_address_street" />
+              </ChildContent>
+            </RadzenFormField>
+            <RadzenFormField Text="shippingaddresscity" Variant="Variant.Filled">
+                  <ChildContent>
+                    <RadzenTextBox style="display: block; width: 100%" @bind-Value="@accountsAccount.shipping_address_city" Name="shipping_address_city" />
+              </ChildContent>
+            </RadzenFormField>
+            <RadzenFormField Text="shippingaddressstate" Variant="Variant.Filled">
+                  <ChildContent>
+                    <RadzenTextBox style="display: block; width: 100%" @bind-Value="@accountsAccount.shipping_address_state" Name="shipping_address_state" />
+              </ChildContent>
+            </RadzenFormField>
+            <RadzenFormField Text="shippingaddresscountry" Variant="Variant.Filled">
+                  <ChildContent>
+                    <RadzenTextBox style="display: block; width: 100%" @bind-Value="@accountsAccount.shipping_address_country" Name="shipping_address_country" />
+              </ChildContent>
+            </RadzenFormField>
+            <RadzenFormField Text="shippingaddresspostalcode" Variant="Variant.Filled">
+                  <ChildContent>
+                    <RadzenTextBox style="display: block; width: 100%" @bind-Value="@accountsAccount.shipping_address_postal_code" Name="shipping_address_postal_code" />
+              </ChildContent>
+            </RadzenFormField>
+            <RadzenFormField Text="description" Variant="Variant.Filled">
+                  <ChildContent>
+                    <RadzenTextBox style="display: block; width: 100%" @bind-Value="@accountsAccount.description" Name="description" />
+              </ChildContent>
+            </RadzenFormField>
+            <RadzenFormField Text="campaign" Variant="Variant.Filled">
+                  <ChildContent>
+                    <RadzenDropDownDataGrid Data="@campaigncampaignsForcampaignId" TextProperty="users_template_id" ValueProperty="campaign_id" AllowClear=true
+                        Disabled=@(hascampaign_idValue)  style="display: block; width: 100%" @bind-Value="@accountsAccount.campaign_id" Name="campaign_id"
+                        SelectedValue=@campaigncampaignsForcampaignIdValue Count=@campaigncampaignsForcampaignIdCount LoadData=@campaigncampaignsForcampaignIdLoadData />
+              </ChildContent>
+            </RadzenFormField>
+            <RadzenFormField Text="employee" Variant="Variant.Filled">
+                  <ChildContent>
+                    <RadzenDropDownDataGrid Data="@employeesemployeesForassignedEmployeeId" TextProperty="layout_set_id" ValueProperty="employee_id" AllowClear=true
+                        Disabled=@(hasassigned_employee_idValue)  style="display: block; width: 100%" @bind-Value="@accountsAccount.assigned_employee_id" Name="assigned_employee_id"
+                        SelectedValue=@employeesemployeesForassignedEmployeeIdValue Count=@employeesemployeesForassignedEmployeeIdCount LoadData=@employeesemployeesForassignedEmployeeIdLoadData />
+              </ChildContent>
+            </RadzenFormField>
+          </RadzenStack>
+          <RadzenStack style="margin-top:1rem;" Orientation="Orientation.Horizontal" AlignItems="AlignItems.Center" JustifyContent="JustifyContent.End" Gap="0.5rem">
+                    <RadzenButton ButtonStyle="ButtonStyle.Primary" ButtonType="ButtonType.Submit" Icon="save" Text="Save" Variant="Variant.Flat" />
+                    <RadzenButton ButtonStyle="ButtonStyle.Light" Text="Cancel" Variant="Variant.Flat" Click="@CancelButtonClick"  />
+          </RadzenStack>
+        </RadzenTemplateForm>
+    </RadzenColumn>
+

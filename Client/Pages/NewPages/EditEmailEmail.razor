@@ -1,0 +1,171 @@
+@page "/edit-email-email"
+
+<PageTitle>Edit EmailEmail</PageTitle>
+
+    <RadzenColumn SizeMD=12>
+        <RadzenAlert Shade="Shade.Lighter" Variant="Variant.Flat" Size="AlertSize.Small" AlertStyle="AlertStyle.Danger" Visible="@errorVisible">Cannot save EmailEmail</RadzenAlert>
+        <RadzenTemplateForm TItem="EspoNew.Server.Models.EspoDbNew.EmailEmail" Data="@emailEmail" Visible="@(emailEmail != null)" Submit="@FormSubmit">
+          <RadzenStack>
+            <RadzenFormField Text="E Tag" Variant="Variant.Filled">
+                  <ChildContent>
+                    <RadzenTextBox style="display: block; width: 100%" @bind-Value="@emailEmail.ETag" Name="ETag" />
+              </ChildContent>
+            </RadzenFormField>
+            <RadzenFormField Text="emailid" Variant="Variant.Filled">
+                  <ChildContent>
+                    <RadzenTextBox style="display: block; width: 100%" @bind-Value="@emailEmail.email_id" Name="email_id" />
+                  </ChildContent>    
+                  <Helper>
+                    <RadzenRequiredValidator Component="email_id" Text="email_id is required" />
+                  </Helper>
+            </RadzenFormField>
+            <RadzenFormField Text="name" Variant="Variant.Filled">
+                  <ChildContent>
+                    <RadzenTextBox style="display: block; width: 100%" @bind-Value="@emailEmail.name" Name="name" />
+              </ChildContent>
+            </RadzenFormField>
+            <RadzenFormField Text="deleted" Variant="Variant.Filled">
+                  <ChildContent>
+                    <RadzenNumeric style="display: block; width: 100%" @bind-Value="@emailEmail.deleted" Name="deleted" />
+              </ChildContent>
+            </RadzenFormField>
+            <RadzenFormField Text="fromstring" Variant="Variant.Filled">
+                  <ChildContent>
+                    <RadzenTextBox style="display: block; width: 100%" @bind-Value="@emailEmail.from_string" Name="from_string" />
+              </ChildContent>
+            </RadzenFormField>
+            <RadzenFormField Text="replytostring" Variant="Variant.Filled">
+                  <ChildContent>
+                    <RadzenTextBox style="display: block; width: 100%" @bind-Value="@emailEmail.reply_to_string" Name="reply_to_string" />
+              </ChildContent>
+            </RadzenFormField>
+            <RadzenFormField Text="addressnamemap" Variant="Variant.Filled">
+                  <ChildContent>
+                    <RadzenTextBox style="display: block; width: 100%" @bind-Value="@emailEmail.address_name_map" Name="address_name_map" />
+              </ChildContent>
+            </RadzenFormField>
+            <RadzenFormField Text="isreplied" Variant="Variant.Filled">
+                  <ChildContent>
+                    <RadzenNumeric style="display: block; width: 100%" @bind-Value="@emailEmail.is_replied" Name="is_replied" />
+              </ChildContent>
+            </RadzenFormField>
+            <RadzenFormField Text="messageid" Variant="Variant.Filled">
+                  <ChildContent>
+                    <RadzenTextBox style="display: block; width: 100%" @bind-Value="@emailEmail.message_id" Name="message_id" />
+              </ChildContent>
+            </RadzenFormField>
+            <RadzenFormField Text="messageidinternal" Variant="Variant.Filled">
+                  <ChildContent>
+                    <RadzenTextBox style="display: block; width: 100%" @bind-Value="@emailEmail.message_id_internal" Name="message_id_internal" />
+              </ChildContent>
+            </RadzenFormField>
+            <RadzenFormField Text="bodyplain" Variant="Variant.Filled">
+                  <ChildContent>
+                    <RadzenTextBox style="display: block; width: 100%" @bind-Value="@emailEmail.body_plain" Name="body_plain" />
+              </ChildContent>
+            </RadzenFormField>
+            <RadzenFormField Text="body" Variant="Variant.Filled">
+                  <ChildContent>
+                    <RadzenTextBox style="display: block; width: 100%" @bind-Value="@emailEmail.body" Name="body" />
+              </ChildContent>
+            </RadzenFormField>
+            <RadzenFormField Text="ishtml" Variant="Variant.Filled">
+                  <ChildContent>
+                    <RadzenNumeric style="display: block; width: 100%" @bind-Value="@emailEmail.is_html" Name="is_html" />
+              </ChildContent>
+            </RadzenFormField>
+            <RadzenFormField Text="status" Variant="Variant.Filled">
+                  <ChildContent>
+                    <RadzenTextBox style="display: block; width: 100%" @bind-Value="@emailEmail.status" Name="status" />
+              </ChildContent>
+            </RadzenFormField>
+            <RadzenFormField Text="hasattachment" Variant="Variant.Filled">
+                  <ChildContent>
+                    <RadzenNumeric style="display: block; width: 100%" @bind-Value="@emailEmail.has_attachment" Name="has_attachment" />
+              </ChildContent>
+            </RadzenFormField>
+            <RadzenFormField Text="datesent" Variant="Variant.Filled">
+                  <ChildContent>
+                    <RadzenDatePicker DateFormat="MM/dd/yyyy" style="display: block; width: 100%" @bind-Value="@emailEmail.date_sent" Name="date_sent" />
+              </ChildContent>
+            </RadzenFormField>
+            <RadzenFormField Text="deliverydate" Variant="Variant.Filled">
+                  <ChildContent>
+                    <RadzenDatePicker DateFormat="MM/dd/yyyy" style="display: block; width: 100%" @bind-Value="@emailEmail.delivery_date" Name="delivery_date" />
+              </ChildContent>
+            </RadzenFormField>
+            <RadzenFormField Text="issystem" Variant="Variant.Filled">
+                  <ChildContent>
+                    <RadzenNumeric style="display: block; width: 100%" @bind-Value="@emailEmail.is_system" Name="is_system" />
+              </ChildContent>
+            </RadzenFormField>
+            <RadzenFormField Text="icscontents" Variant="Variant.Filled">
+                  <ChildContent>
+                    <RadzenTextBox style="display: block; width: 100%" @bind-Value="@emailEmail.ics_contents" Name="ics_contents" />
+              </ChildContent>
+            </RadzenFormField>
+            <RadzenFormField Text="icseventuid" Variant="Variant.Filled">
+                  <ChildContent>
+                    <RadzenTextBox style="display: block; width: 100%" @bind-Value="@emailEmail.ics_event_uid" Name="ics_event_uid" />
+              </ChildContent>
+            </RadzenFormField>
+            <RadzenFormField Text="fromemailaddressid" Variant="Variant.Filled">
+                  <ChildContent>
+                    <RadzenTextBox style="display: block; width: 100%" @bind-Value="@emailEmail.from_email_address_id" Name="from_email_address_id" />
+              </ChildContent>
+            </RadzenFormField>
+            <RadzenFormField Text="parentid" Variant="Variant.Filled">
+                  <ChildContent>
+                    <RadzenTextBox style="display: block; width: 100%" @bind-Value="@emailEmail.parent_id" Name="parent_id" />
+              </ChildContent>
+            </RadzenFormField>
+            <RadzenFormField Text="parenttype" Variant="Variant.Filled">
+                  <ChildContent>
+                    <RadzenTextBox style="display: block; width: 100%" @bind-Value="@emailEmail.parent_type" Name="parent_type" />
+              </ChildContent>
+            </RadzenFormField>
+            <RadzenFormField Text="sentbyid" Variant="Variant.Filled">
+                  <ChildContent>
+                    <RadzenTextBox style="display: block; width: 100%" @bind-Value="@emailEmail.sent_by_id" Name="sent_by_id" />
+              </ChildContent>
+            </RadzenFormField>
+            <RadzenFormField Text="assignedemployeeid" Variant="Variant.Filled">
+                  <ChildContent>
+                    <RadzenTextBox style="display: block; width: 100%" @bind-Value="@emailEmail.assigned_employee_id" Name="assigned_employee_id" />
+              </ChildContent>
+            </RadzenFormField>
+            <RadzenFormField Text="repliedid" Variant="Variant.Filled">
+                  <ChildContent>
+                    <RadzenTextBox style="display: block; width: 100%" @bind-Value="@emailEmail.replied_id" Name="replied_id" />
+              </ChildContent>
+            </RadzenFormField>
+            <RadzenFormField Text="createdeventid" Variant="Variant.Filled">
+                  <ChildContent>
+                    <RadzenTextBox style="display: block; width: 100%" @bind-Value="@emailEmail.created_event_id" Name="created_event_id" />
+              </ChildContent>
+            </RadzenFormField>
+            <RadzenFormField Text="createdeventtype" Variant="Variant.Filled">
+                  <ChildContent>
+                    <RadzenTextBox style="display: block; width: 100%" @bind-Value="@emailEmail.created_event_type" Name="created_event_type" />
+              </ChildContent>
+            </RadzenFormField>
+            <RadzenFormField Text="groupfolderid" Variant="Variant.Filled">
+                  <ChildContent>
+                    <RadzenTextBox style="display: block; width: 100%" @bind-Value="@emailEmail.group_folder_id" Name="group_folder_id" />
+              </ChildContent>
+            </RadzenFormField>
+            <RadzenFormField Text="account" Variant="Variant.Filled">
+                  <ChildContent>
+                    <RadzenDropDownDataGrid Data="@accountsaccountsForaccountId" TextProperty="assigned_employee_id" ValueProperty="account_id" AllowClear=true
+                        Disabled=@(hasaccount_idValue)  style="display: block; width: 100%" @bind-Value="@emailEmail.account_id" Name="account_id"
+                        SelectedValue=@accountsaccountsForaccountIdValue Count=@accountsaccountsForaccountIdCount LoadData=@accountsaccountsForaccountIdLoadData />
+              </ChildContent>
+            </RadzenFormField>
+          </RadzenStack>
+          <RadzenStack style="margin-top:1rem;" Orientation="Orientation.Horizontal" AlignItems="AlignItems.Center" JustifyContent="JustifyContent.End" Gap="0.5rem">
+                    <RadzenButton ButtonStyle="ButtonStyle.Primary" ButtonType="ButtonType.Submit" Icon="save" Text="Save" Variant="Variant.Flat" />
+                    <RadzenButton ButtonStyle="ButtonStyle.Light" Text="Cancel" Variant="Variant.Flat" Click="@CancelButtonClick"  />
+          </RadzenStack>
+        </RadzenTemplateForm>
+    </RadzenColumn>
+

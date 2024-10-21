@@ -1,0 +1,40 @@
+@page "/add-address-address-city"
+
+<PageTitle>Add AddressAddressCity</PageTitle>
+    <RadzenColumn SizeMD=12>
+        <RadzenAlert Shade="Shade.Lighter" Variant="Variant.Flat" Size="AlertSize.Small" AlertStyle="AlertStyle.Danger" Visible="@errorVisible">Cannot save AddressAddressCity</RadzenAlert>
+        <RadzenTemplateForm TItem="EspoNew.Server.Models.EspoDbNew.AddressAddressCity" Data="@addressAddressCity" Visible="@(addressAddressCity != null)" Submit="@FormSubmit">
+          <RadzenStack>
+            <RadzenFormField Text="E Tag" Variant="Variant.Filled">
+                  <ChildContent>
+                    <RadzenTextBox style="display: block; width: 100%" @bind-Value="@addressAddressCity.ETag" Name="ETag" />
+              </ChildContent>
+            </RadzenFormField>
+            <RadzenFormField Text="cityid" Variant="Variant.Filled">
+                  <ChildContent>
+                    <RadzenTextBox style="display: block; width: 100%" @bind-Value="@addressAddressCity.city_id" Name="city_id" />
+                  </ChildContent>    
+                  <Helper>
+                    <RadzenRequiredValidator Component="city_id" Text="city_id is required" />
+                  </Helper>
+            </RadzenFormField>
+            <RadzenFormField Text="cityname" Variant="Variant.Filled">
+                  <ChildContent>
+                    <RadzenTextBox style="display: block; width: 100%" @bind-Value="@addressAddressCity.city_name" Name="city_name" />
+              </ChildContent>
+            </RadzenFormField>
+            <RadzenFormField Text="addressstate" Variant="Variant.Filled">
+                  <ChildContent>
+                    <RadzenDropDownDataGrid Data="@addressaddressStatesForstateId" TextProperty="country_id" ValueProperty="state_id" AllowClear=true
+                        Disabled=@(hasstate_idValue)  style="display: block; width: 100%" @bind-Value="@addressAddressCity.state_id" Name="state_id"
+                        SelectedValue=@addressaddressStatesForstateIdValue Count=@addressaddressStatesForstateIdCount LoadData=@addressaddressStatesForstateIdLoadData />
+              </ChildContent>
+            </RadzenFormField>
+          </RadzenStack>
+          <RadzenStack style="margin-top:1rem;" Orientation="Orientation.Horizontal" AlignItems="AlignItems.Center" JustifyContent="JustifyContent.End" Gap="0.5rem">
+                    <RadzenButton ButtonStyle="ButtonStyle.Primary" ButtonType="ButtonType.Submit" Icon="save" Text="Save" Variant="Variant.Flat" />
+                    <RadzenButton ButtonStyle="ButtonStyle.Light" Text="Cancel" Variant="Variant.Flat" Click="@CancelButtonClick"  />
+          </RadzenStack>
+        </RadzenTemplateForm>
+    </RadzenColumn>
+

@@ -1,0 +1,52 @@
+@page "/add-contacts-contact-opportunity"
+
+<PageTitle>Add ContactsContactOpportunity</PageTitle>
+    <RadzenColumn SizeMD=12>
+        <RadzenAlert Shade="Shade.Lighter" Variant="Variant.Flat" Size="AlertSize.Small" AlertStyle="AlertStyle.Danger" Visible="@errorVisible">Cannot save ContactsContactOpportunity</RadzenAlert>
+        <RadzenTemplateForm TItem="EspoNew.Server.Models.EspoDbNew.ContactsContactOpportunity" Data="@contactsContactOpportunity" Visible="@(contactsContactOpportunity != null)" Submit="@FormSubmit">
+          <RadzenStack>
+            <RadzenFormField Text="E Tag" Variant="Variant.Filled">
+                  <ChildContent>
+                    <RadzenTextBox style="display: block; width: 100%" @bind-Value="@contactsContactOpportunity.ETag" Name="ETag" />
+              </ChildContent>
+            </RadzenFormField>
+            <RadzenFormField Text="contactopportunityid" Variant="Variant.Filled">
+                  <ChildContent>
+                    <RadzenTextBox style="display: block; width: 100%" @bind-Value="@contactsContactOpportunity.contact_opportunity_id" Name="contact_opportunity_id" />
+                  </ChildContent>    
+                  <Helper>
+                    <RadzenRequiredValidator Component="contact_opportunity_id" Text="contact_opportunity_id is required" />
+                  </Helper>
+            </RadzenFormField>
+            <RadzenFormField Text="contact" Variant="Variant.Filled">
+                  <ChildContent>
+                    <RadzenDropDownDataGrid Data="@contactscontactsForcontactId" TextProperty="assigned_employee_id" ValueProperty="contact_id" AllowClear=true
+                        Disabled=@(hascontact_idValue)  style="display: block; width: 100%" @bind-Value="@contactsContactOpportunity.contact_id" Name="contact_id"
+                        SelectedValue=@contactscontactsForcontactIdValue Count=@contactscontactsForcontactIdCount LoadData=@contactscontactsForcontactIdLoadData />
+              </ChildContent>
+            </RadzenFormField>
+            <RadzenFormField Text="opportunity" Variant="Variant.Filled">
+                  <ChildContent>
+                    <RadzenDropDownDataGrid Data="@opportunitiesopportunitiesForopportunityId" TextProperty="assigned_employee_id" ValueProperty="opportunity_id" AllowClear=true
+                        Disabled=@(hasopportunity_idValue)  style="display: block; width: 100%" @bind-Value="@contactsContactOpportunity.opportunity_id" Name="opportunity_id"
+                        SelectedValue=@opportunitiesopportunitiesForopportunityIdValue Count=@opportunitiesopportunitiesForopportunityIdCount LoadData=@opportunitiesopportunitiesForopportunityIdLoadData />
+              </ChildContent>
+            </RadzenFormField>
+            <RadzenFormField Text="role" Variant="Variant.Filled">
+                  <ChildContent>
+                    <RadzenTextBox style="display: block; width: 100%" @bind-Value="@contactsContactOpportunity.role" Name="role" />
+              </ChildContent>
+            </RadzenFormField>
+            <RadzenFormField Text="deleted" Variant="Variant.Filled">
+                  <ChildContent>
+                    <RadzenNumeric style="display: block; width: 100%" @bind-Value="@contactsContactOpportunity.deleted" Name="deleted" />
+              </ChildContent>
+            </RadzenFormField>
+          </RadzenStack>
+          <RadzenStack style="margin-top:1rem;" Orientation="Orientation.Horizontal" AlignItems="AlignItems.Center" JustifyContent="JustifyContent.End" Gap="0.5rem">
+                    <RadzenButton ButtonStyle="ButtonStyle.Primary" ButtonType="ButtonType.Submit" Icon="save" Text="Save" Variant="Variant.Flat" />
+                    <RadzenButton ButtonStyle="ButtonStyle.Light" Text="Cancel" Variant="Variant.Flat" Click="@CancelButtonClick"  />
+          </RadzenStack>
+        </RadzenTemplateForm>
+    </RadzenColumn>
+

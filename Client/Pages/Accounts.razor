@@ -1,0 +1,185 @@
+@page "/accounts/{account_Id:int}"
+
+<h3>Accounts Details for Account ID: @account_Id</h3>
+
+<RadzenRow>    
+    <RadzenColumn Size="6">
+        <RadzenText Text="Calls" TextStyle="TextStyle.H3" TagName="TagName.H1"/>
+    </RadzenColumn> 
+    <RadzenColumn Size="6">
+        <RadzenText Text="Tasks" TextStyle="TextStyle.H3" TagName="TagName.H1" />
+    </RadzenColumn>
+</RadzenRow>
+<RadzenRow>
+    <RadzenColumn SizeMD="6">
+    <RadzenDataGrid TItem="EspoNew.Server.Models.EspoDbNew.CallsCall" Data="@callsCalls" ColumnWidth="200px" AllowSorting="true" AllowPaging="true" AllowFiltering="true" LoadData="@callsCallsLoadData" Count="@callsCallsCount" Style="margin-top: 0px"   >
+        <Columns>
+            <RadzenDataGridColumn TItem="EspoNew.Server.Models.EspoDbNew.CallsCall" Property="account" Title="account" Visible="false"/>
+            <RadzenDataGridColumn TItem="EspoNew.Server.Models.EspoDbNew.CallsCall" Property="account_id" Title="account_id" Visible="false" />
+            <RadzenDataGridColumn TItem="EspoNew.Server.Models.EspoDbNew.CallsCall" Property="assigned_employee_id" Title="assigned_employee_id" Visible="false" />
+            <RadzenDataGridColumn TItem="EspoNew.Server.Models.EspoDbNew.CallsCall" Property="call_id" Title="call_id" Visible="false" />
+            <RadzenDataGridColumn TItem="EspoNew.Server.Models.EspoDbNew.CallsCall" Property="date_end" Title="date_end" />
+            <RadzenDataGridColumn TItem="EspoNew.Server.Models.EspoDbNew.CallsCall" Property="date_start" Title="date_start" />
+            <RadzenDataGridColumn TItem="EspoNew.Server.Models.EspoDbNew.CallsCall" Property="deleted" Title="deleted" />
+            <RadzenDataGridColumn TItem="EspoNew.Server.Models.EspoDbNew.CallsCall" Property="description" Title="description" />
+            <RadzenDataGridColumn TItem="EspoNew.Server.Models.EspoDbNew.CallsCall" Property="direction" Title="direction" />
+            <RadzenDataGridColumn TItem="EspoNew.Server.Models.EspoDbNew.CallsCall" Property="ETag" Title="ETag" />
+            <RadzenDataGridColumn TItem="EspoNew.Server.Models.EspoDbNew.CallsCall" Property="name" Title="name" />
+            <RadzenDataGridColumn TItem="EspoNew.Server.Models.EspoDbNew.CallsCall" Property="parent_id" Title="parent_id" Visible="false" />
+            <RadzenDataGridColumn TItem="EspoNew.Server.Models.EspoDbNew.CallsCall" Property="parent_type" Title="parent_type" />
+            <RadzenDataGridColumn TItem="EspoNew.Server.Models.EspoDbNew.CallsCall" Property="status" Title="status" />
+        </Columns>
+    </RadzenDataGrid>
+    <RadzenButton Style="width: 131px; margin: 10px; margin-left: 0px; margin-bottom: 10px; margin-right: 0px" Icon="edit_attributes" Text="Add Calls" @onclick="@CallsButton0Click"></RadzenButton>
+    </RadzenColumn>
+    <RadzenColumn SizeMD="6">
+        <RadzenDataGrid TItem="EspoNew.Server.Models.EspoDbNew.TasksTask" Data="@tasksTasks" ColumnWidth="200px" AllowSorting="true" AllowPaging="true" AllowFiltering="true" LoadData="@tasksTasksLoadData" Count="@tasksTasksCount">
+            <Columns>
+                <RadzenDataGridColumn TItem="EspoNew.Server.Models.EspoDbNew.TasksTask" Property="account" Title="account" Visible="false"/>
+                <RadzenDataGridColumn TItem="EspoNew.Server.Models.EspoDbNew.TasksTask" Property="account_id" Title="account_id" Visible="false"/>
+                <RadzenDataGridColumn TItem="EspoNew.Server.Models.EspoDbNew.TasksTask" Property="assigned_employee_id" Title="assigned_employee_id" Visible="false"/>
+                <RadzenDataGridColumn TItem="EspoNew.Server.Models.EspoDbNew.TasksTask" Property="contact" Title="contact" Visible="false"/>
+                <RadzenDataGridColumn TItem="EspoNew.Server.Models.EspoDbNew.TasksTask" Property="contact_id" Title="contact_id" Visible="false" />
+                <RadzenDataGridColumn TItem="EspoNew.Server.Models.EspoDbNew.TasksTask" Property="date_completed" Title="date_completed" />
+                <RadzenDataGridColumn TItem="EspoNew.Server.Models.EspoDbNew.TasksTask" Property="date_end" Title="date_end" />
+                <RadzenDataGridColumn TItem="EspoNew.Server.Models.EspoDbNew.TasksTask" Property="date_end_date" Title="date_end_date" Visible="false"/>
+                <RadzenDataGridColumn TItem="EspoNew.Server.Models.EspoDbNew.TasksTask" Property="date_start" Title="date_start" />
+                <RadzenDataGridColumn TItem="EspoNew.Server.Models.EspoDbNew.TasksTask" Property="date_start_date" Title="date_start_date" Visible="false"/>
+                <RadzenDataGridColumn TItem="EspoNew.Server.Models.EspoDbNew.TasksTask" Property="deleted" Title="deleted" />
+                <RadzenDataGridColumn TItem="EspoNew.Server.Models.EspoDbNew.TasksTask" Property="description" Title="description" />
+                <RadzenDataGridColumn TItem="EspoNew.Server.Models.EspoDbNew.TasksTask" Property="email" Title="email" Visible="false"/>
+                <RadzenDataGridColumn TItem="EspoNew.Server.Models.EspoDbNew.TasksTask" Property="email_id" Title="email_id" Visible="false"/>
+                <RadzenDataGridColumn TItem="EspoNew.Server.Models.EspoDbNew.TasksTask" Property="employee" Title="employee" />
+                <RadzenDataGridColumn TItem="EspoNew.Server.Models.EspoDbNew.TasksTask" Property="ETag" Title="ETag" Visible="false"/>
+                <RadzenDataGridColumn TItem="EspoNew.Server.Models.EspoDbNew.TasksTask" Property="name" Title="name" />
+                <RadzenDataGridColumn TItem="EspoNew.Server.Models.EspoDbNew.TasksTask" Property="parent_id" Title="parent_id" Visible="false"/>
+                <RadzenDataGridColumn TItem="EspoNew.Server.Models.EspoDbNew.TasksTask" Property="parent_type" Title="parent_type" Visible="false"/>
+                <RadzenDataGridColumn TItem="EspoNew.Server.Models.EspoDbNew.TasksTask" Property="priority" Title="priority" Visible="false"/>
+                <RadzenDataGridColumn TItem="EspoNew.Server.Models.EspoDbNew.TasksTask" Property="status" Title="status" />
+                <RadzenDataGridColumn TItem="EspoNew.Server.Models.EspoDbNew.TasksTask" Property="task_id" Title="task_id" Visible="false"/>
+            </Columns>
+        </RadzenDataGrid>
+    
+    </RadzenColumn>
+</RadzenRow>
+<RadzenRow>
+    
+    <RadzenColumn SizeMD=12>
+        <RadzenText Text="Assigned Employees" TextStyle="TextStyle.H3" TagName="TagName.H1" />
+        <RadzenDataGrid TItem="EspoNew.Server.Models.EspoDbNew.EmployeesEmployee" Data="@employeesEmployees" ColumnWidth="200px" AllowSorting="true" AllowPaging="true" AllowFiltering="true" LoadData="@employeesEmployeesLoadData" Count="@employeesEmployeesCount">
+            <Columns>
+                <RadzenDataGridColumn TItem="EspoNew.Server.Models.EspoDbNew.EmployeesEmployee" Property="api_key" Title="api_key" />
+                <RadzenDataGridColumn TItem="EspoNew.Server.Models.EspoDbNew.EmployeesEmployee" Property="auth_method" Title="auth_method" />
+                <RadzenDataGridColumn TItem="EspoNew.Server.Models.EspoDbNew.EmployeesEmployee" Property="avatar_color" Title="avatar_color" />
+                <RadzenDataGridColumn TItem="EspoNew.Server.Models.EspoDbNew.EmployeesEmployee" Property="avatar_id" Title="avatar_id" />
+                <RadzenDataGridColumn TItem="EspoNew.Server.Models.EspoDbNew.EmployeesEmployee" Property="contact" Title="contact" />
+                <RadzenDataGridColumn TItem="EspoNew.Server.Models.EspoDbNew.EmployeesEmployee" Property="contact_id" Title="contact_id" />
+                <RadzenDataGridColumn TItem="EspoNew.Server.Models.EspoDbNew.EmployeesEmployee" Property="dashboard_template_id" Title="dashboard_template_id" />
+                <RadzenDataGridColumn TItem="EspoNew.Server.Models.EspoDbNew.EmployeesEmployee" Property="default_team_id" Title="default_team_id" />
+                <RadzenDataGridColumn TItem="EspoNew.Server.Models.EspoDbNew.EmployeesEmployee" Property="delete_id" Title="delete_id" />
+                <RadzenDataGridColumn TItem="EspoNew.Server.Models.EspoDbNew.EmployeesEmployee" Property="deleted" Title="deleted" />
+                <RadzenDataGridColumn TItem="EspoNew.Server.Models.EspoDbNew.EmployeesEmployee" Property="employee_id" Title="employee_id" />
+                <RadzenDataGridColumn TItem="EspoNew.Server.Models.EspoDbNew.EmployeesEmployee" Property="employee_name" Title="employee_name" />
+                <RadzenDataGridColumn TItem="EspoNew.Server.Models.EspoDbNew.EmployeesEmployee" Property="ETag" Title="ETag" />
+                <RadzenDataGridColumn TItem="EspoNew.Server.Models.EspoDbNew.EmployeesEmployee" Property="first_name" Title="first_name" />
+                <RadzenDataGridColumn TItem="EspoNew.Server.Models.EspoDbNew.EmployeesEmployee" Property="gender" Title="gender" />
+                <RadzenDataGridColumn TItem="EspoNew.Server.Models.EspoDbNew.EmployeesEmployee" Property="is_active" Title="is_active" />
+                <RadzenDataGridColumn TItem="EspoNew.Server.Models.EspoDbNew.EmployeesEmployee" Property="last_name" Title="last_name" />
+                <RadzenDataGridColumn TItem="EspoNew.Server.Models.EspoDbNew.EmployeesEmployee" Property="layout_set_id" Title="layout_set_id" />
+                <RadzenDataGridColumn TItem="EspoNew.Server.Models.EspoDbNew.EmployeesEmployee" Property="middle_name" Title="middle_name" />
+                <RadzenDataGridColumn TItem="EspoNew.Server.Models.EspoDbNew.EmployeesEmployee" Property="password" Title="password" />
+                <RadzenDataGridColumn TItem="EspoNew.Server.Models.EspoDbNew.EmployeesEmployee" Property="salutation_name" Title="salutation_name" />
+                <RadzenDataGridColumn TItem="EspoNew.Server.Models.EspoDbNew.EmployeesEmployee" Property="title" Title="title" />
+                <RadzenDataGridColumn TItem="EspoNew.Server.Models.EspoDbNew.EmployeesEmployee" Property="type" Title="type" />
+                <RadzenDataGridColumn TItem="EspoNew.Server.Models.EspoDbNew.EmployeesEmployee" Property="working_time_calendar_id" Title="working_time_calendar_id" />
+            </Columns>
+        </RadzenDataGrid>
+    </RadzenColumn>
+</RadzenRow>
+<RadzenTabs Style="margin-top: 30px">
+    <Tabs>
+        <RadzenTabsItem Text="Contacts">
+        <RadzenDataGrid TItem="EspoNew.Server.Models.EspoDbNew.ContactsContact" Data="@contactsContacts" ColumnWidth="200px" AllowSorting="true" AllowPaging="true" AllowFiltering="true" LoadData="@contactsContactsLoadData" Count="@contactsContactsCount" RowSelect="@DataGrid3RowSelect">
+            <Columns>
+                <RadzenDataGridColumn TItem="EspoNew.Server.Models.EspoDbNew.ContactsContact" Property="account" Title="account" Visible="false" />
+                <RadzenDataGridColumn TItem="EspoNew.Server.Models.EspoDbNew.ContactsContact" Property="account_id" Title="account_id" Visible="false" />
+                <RadzenDataGridColumn TItem="EspoNew.Server.Models.EspoDbNew.ContactsContact" Property="address_city" Title="address_city" Visible="false" />
+                <RadzenDataGridColumn TItem="EspoNew.Server.Models.EspoDbNew.ContactsContact" Property="address_country" Title="address_country" Visible="false" />
+                <RadzenDataGridColumn TItem="EspoNew.Server.Models.EspoDbNew.ContactsContact" Property="address_postal_code" Title="address_postal_code" Visible="false"  />
+                <RadzenDataGridColumn TItem="EspoNew.Server.Models.EspoDbNew.ContactsContact" Property="address_state" Title="address_state" Visible="false"  />
+                <RadzenDataGridColumn TItem="EspoNew.Server.Models.EspoDbNew.ContactsContact" Property="address_street" Title="address_street" Visible="false"  />
+                <RadzenDataGridColumn TItem="EspoNew.Server.Models.EspoDbNew.ContactsContact" Property="assigned_employee_id" Title="assigned_employee_id" />
+                <RadzenDataGridColumn TItem="EspoNew.Server.Models.EspoDbNew.ContactsContact" Property="contact_id" Title="contact_id" Visible="false"  />
+                <RadzenDataGridColumn TItem="EspoNew.Server.Models.EspoDbNew.ContactsContact" Property="deleted" Title="deleted" Visible="false"  />
+                <RadzenDataGridColumn TItem="EspoNew.Server.Models.EspoDbNew.ContactsContact" Property="description" Title="description" />
+                <RadzenDataGridColumn TItem="EspoNew.Server.Models.EspoDbNew.ContactsContact" Property="do_not_call" Title="do_not_call" Visible="false" />
+                <RadzenDataGridColumn TItem="EspoNew.Server.Models.EspoDbNew.ContactsContact" Property="ETag" Title="ETag" Visible="false"  />
+                <RadzenDataGridColumn TItem="EspoNew.Server.Models.EspoDbNew.ContactsContact" Property="first_name" Title="first_name" />
+                <RadzenDataGridColumn TItem="EspoNew.Server.Models.EspoDbNew.ContactsContact" Property="last_name" Title="last_name" />
+                <RadzenDataGridColumn TItem="EspoNew.Server.Models.EspoDbNew.ContactsContact" Property="middle_name" Title="middle_name" />
+                <RadzenDataGridColumn TItem="EspoNew.Server.Models.EspoDbNew.ContactsContact" Property="salutation_name" Title="salutation_name" />
+            </Columns>
+        </RadzenDataGrid>
+        </RadzenTabsItem>
+        <RadzenTabsItem Text="Cases">
+        <RadzenDataGrid TItem="EspoNew.Server.Models.EspoDbNew.CasesCase" Data="@casesCases" ColumnWidth="200px" AllowSorting="true" AllowPaging="true" AllowFiltering="true" LoadData="@casesCasesLoadData" Count="@casesCasesCount">
+            <Columns>
+                <RadzenDataGridColumn TItem="EspoNew.Server.Models.EspoDbNew.CasesCase" Property="account" Title="account" Visible="false" />
+                <RadzenDataGridColumn TItem="EspoNew.Server.Models.EspoDbNew.CasesCase" Property="account_id" Title="account_id" Visible="false" />
+                <RadzenDataGridColumn TItem="EspoNew.Server.Models.EspoDbNew.CasesCase" Property="assigned_employee_id" Title="assigned__id" Visible="false" />
+                <RadzenDataGridColumn TItem="EspoNew.Server.Models.EspoDbNew.CasesCase" Property="case_id" Title="case_id" Visible="false" />
+                <RadzenDataGridColumn TItem="EspoNew.Server.Models.EspoDbNew.CasesCase" Property="contact" Title="contact" />
+                <RadzenDataGridColumn TItem="EspoNew.Server.Models.EspoDbNew.CasesCase" Property="contact_id" Title="contact_id" Visible="false" />
+                <RadzenDataGridColumn TItem="EspoNew.Server.Models.EspoDbNew.CasesCase" Property="deleted" Title="deleted" />
+                <RadzenDataGridColumn TItem="EspoNew.Server.Models.EspoDbNew.CasesCase" Property="description" Title="description" />
+                <RadzenDataGridColumn TItem="EspoNew.Server.Models.EspoDbNew.CasesCase" Property="ETag" Title="ETag" Visible="false" />
+                <RadzenDataGridColumn TItem="EspoNew.Server.Models.EspoDbNew.CasesCase" Property="inbound_email_id" Title="inbound_email_id" />
+                <RadzenDataGridColumn TItem="EspoNew.Server.Models.EspoDbNew.CasesCase" Property="lead" Title="lead" />
+                <RadzenDataGridColumn TItem="EspoNew.Server.Models.EspoDbNew.CasesCase" Property="lead_id" Title="lead_id" Visible="false" />
+                <RadzenDataGridColumn TItem="EspoNew.Server.Models.EspoDbNew.CasesCase" Property="name" Title="name" />
+                <RadzenDataGridColumn TItem="EspoNew.Server.Models.EspoDbNew.CasesCase" Property="number" Title="number" />
+                <RadzenDataGridColumn TItem="EspoNew.Server.Models.EspoDbNew.CasesCase" Property="priority" Title="priority" />
+                <RadzenDataGridColumn TItem="EspoNew.Server.Models.EspoDbNew.CasesCase" Property="status" Title="status" />
+                <RadzenDataGridColumn TItem="EspoNew.Server.Models.EspoDbNew.CasesCase" Property="type" Title="type" />
+            </Columns>
+        </RadzenDataGrid>
+        </RadzenTabsItem>
+        <RadzenTabsItem Text="Opportunities">
+        <RadzenDataGrid TItem="EspoNew.Server.Models.EspoDbNew.OpportunitiesOpportunity" Data="@opportunitiesOpportunities" ColumnWidth="200px" AllowSorting="true" AllowPaging="true" AllowFiltering="true" LoadData="@opportunitiesOpportunitiesLoadData" Count="@opportunitiesOpportunitiesCount">
+            <Columns>
+                <RadzenDataGridColumn TItem="EspoNew.Server.Models.EspoDbNew.OpportunitiesOpportunity" Property="account" Title="account" />
+                <RadzenDataGridColumn TItem="EspoNew.Server.Models.EspoDbNew.OpportunitiesOpportunity" Property="account_id" Title="account_id" />
+                <RadzenDataGridColumn TItem="EspoNew.Server.Models.EspoDbNew.OpportunitiesOpportunity" Property="amount" Title="amount" />
+                <RadzenDataGridColumn TItem="EspoNew.Server.Models.EspoDbNew.OpportunitiesOpportunity" Property="amount_currency" Title="amount_currency" />
+                <RadzenDataGridColumn TItem="EspoNew.Server.Models.EspoDbNew.OpportunitiesOpportunity" Property="assigned_employee_id" Title="assigned_employee_id" />
+                <RadzenDataGridColumn TItem="EspoNew.Server.Models.EspoDbNew.OpportunitiesOpportunity" Property="campaign" Title="campaign" />
+                <RadzenDataGridColumn TItem="EspoNew.Server.Models.EspoDbNew.OpportunitiesOpportunity" Property="campaign_id" Title="campaign_id" />
+                <RadzenDataGridColumn TItem="EspoNew.Server.Models.EspoDbNew.OpportunitiesOpportunity" Property="close_date" Title="close_date" />
+                <RadzenDataGridColumn TItem="EspoNew.Server.Models.EspoDbNew.OpportunitiesOpportunity" Property="contact" Title="contact" />
+                <RadzenDataGridColumn TItem="EspoNew.Server.Models.EspoDbNew.OpportunitiesOpportunity" Property="contact_id" Title="contact_id" />
+                <RadzenDataGridColumn TItem="EspoNew.Server.Models.EspoDbNew.OpportunitiesOpportunity" Property="deleted" Title="deleted" />
+                <RadzenDataGridColumn TItem="EspoNew.Server.Models.EspoDbNew.OpportunitiesOpportunity" Property="description" Title="description" />
+                <RadzenDataGridColumn TItem="EspoNew.Server.Models.EspoDbNew.OpportunitiesOpportunity" Property="last_stage" Title="last_stage" />
+                <RadzenDataGridColumn TItem="EspoNew.Server.Models.EspoDbNew.OpportunitiesOpportunity" Property="lead_source" Title="lead_source" />
+                <RadzenDataGridColumn TItem="EspoNew.Server.Models.EspoDbNew.OpportunitiesOpportunity" Property="name" Title="name" />
+                <RadzenDataGridColumn TItem="EspoNew.Server.Models.EspoDbNew.OpportunitiesOpportunity" Property="opportunity_id" Title="opportunity_id" />
+                <RadzenDataGridColumn TItem="EspoNew.Server.Models.EspoDbNew.OpportunitiesOpportunity" Property="probability" Title="probability" />
+                <RadzenDataGridColumn TItem="EspoNew.Server.Models.EspoDbNew.OpportunitiesOpportunity" Property="stage" Title="stage" />
+            </Columns>
+        </RadzenDataGrid>
+        </RadzenTabsItem>
+        <RadzenTabsItem Text="Documents">
+        <RadzenDataGrid TItem="EspoNew.Server.Models.EspoDbNew.AccountsAccountDocument" Data="@accountsAccountDocuments" ColumnWidth="200px" AllowSorting="true" AllowPaging="true" AllowFiltering="true" LoadData="@accountsAccountDocumentsLoadData" Count="@accountsAccountDocumentsCount">
+            <Columns>
+                <RadzenDataGridColumn TItem="EspoNew.Server.Models.EspoDbNew.AccountsAccountDocument" Property="account" Title="account" />
+                <RadzenDataGridColumn TItem="EspoNew.Server.Models.EspoDbNew.AccountsAccountDocument" Property="account_document_id" Title="account_document_id" />
+                <RadzenDataGridColumn TItem="EspoNew.Server.Models.EspoDbNew.AccountsAccountDocument" Property="account_id" Title="account_id" />
+                <RadzenDataGridColumn TItem="EspoNew.Server.Models.EspoDbNew.AccountsAccountDocument" Property="deleted" Title="deleted" />
+                <RadzenDataGridColumn TItem="EspoNew.Server.Models.EspoDbNew.AccountsAccountDocument" Property="document" Title="document" />
+                <RadzenDataGridColumn TItem="EspoNew.Server.Models.EspoDbNew.AccountsAccountDocument" Property="document_id" Title="document_id" />
+                <RadzenDataGridColumn TItem="EspoNew.Server.Models.EspoDbNew.AccountsAccountDocument" Property="ETag" Title="ETag" />
+            </Columns>
+        </RadzenDataGrid>
+        </RadzenTabsItem>
+    </Tabs>
+</RadzenTabs>
